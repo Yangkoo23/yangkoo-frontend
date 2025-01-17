@@ -20,7 +20,7 @@ export function NavigationBar() {
           variant="outline"
           className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
         >
-          <Link href="#">List your property</Link>
+          <Link href="#">List your propertys</Link>
         </Button>
         <Button asChild className="text-white rounded-full">
           <Link href="#">Register</Link>
