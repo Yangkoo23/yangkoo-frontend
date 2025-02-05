@@ -7,7 +7,7 @@ export function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between p-4 border backdrop-blur-xl bg-white/30 rounded-full">
+    <nav className="flex items-center justify-between p-2 border backdrop-blur-xl bg-white/30  rounded-full">
       {/* Logo Section */}
       <div className="text-xl font-bold text-[hsl(var(--primary))] ">
         <Link href="/">LOGO</Link>
