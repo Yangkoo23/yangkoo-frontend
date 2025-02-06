@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,18 +21,23 @@ export function NavigationBar() {
           variant="outline"
           className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
         >
-          <Link href="#">List your property</Link>
+          <Link href="/choose-entities">List your property</Link>
         </Button>
-        <Button asChild className="text-white rounded-full">
-          <Link href="#">Register</Link>
-        </Button>
-        <Button
-          asChild
-          variant="outline"
-          className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
-        >
-          <Link href="#">Sign In</Link>
-        </Button>
+        <SignedOut>
+          <Button asChild className="text-white rounded-full">
+            <Link href="/home/sign-up">Register</Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
+          >
+            <Link href="/home/sign-in">Sign In</Link>
+          </Button>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
         <Button variant={"ghost"} className="text-3xl">
           {" "}
           <svg

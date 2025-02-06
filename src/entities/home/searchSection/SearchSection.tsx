@@ -9,7 +9,7 @@ export const SearchSection = () => {
     <div
       className="relative h-[70vh] bg-cover bg-center flex flex-col items-center justify-center text-white rounded-3xl mt-7"
       style={{
-        backgroundImage: `url('home/hero_image.webp')`, // Replace with your hero image path
+        backgroundImage: "url('/home/hero_image.webp')", // Replace with your hero image path
       }}
     >
       <div className="text-center space-y-4 ">
