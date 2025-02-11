@@ -9,8 +9,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useOrganization } from "@clerk/nextjs";
+import { useHotelById, useCountries } from "./hooks";
+import { useRegionsStore } from "./store/useRegion";
 
 export const OverView = () => {
+  const { organization, isLoaded: orgLoaded } = useOrganization({
+    memberships: true,
+  });
+  const { regions } = useRegionsStore();
+
+  const orgId = organization?.id || "";
+  const { hotel } = useHotelById(orgId);
+  const { countries } = useCountries();
+
+  const onSelectCountryChange = (countryId: string) => {};
+
   return (
     <div className="flex flex-col items-center justify-center container mx-auto py-10 border border-red-600 min-h-screen md:w-[80vw]">
       <h1 className="text-3xl font-bold mb-8">Overview</h1>
@@ -25,7 +39,7 @@ export const OverView = () => {
           <UpdateInput
             id="hotelName"
             name="name"
-            value="Hotel Name"
+            value={hotel.hotel_name}
             onChange={(value) => console.log(value)}
             placeholder="Enter hotel name"
             type="text"
@@ -34,19 +48,41 @@ export const OverView = () => {
         </div>
         <div className="flex flex-col gap-2">
           <label
-            htmlFor="hotelName"
+            htmlFor="country"
             className="text-lg font-medium text-gray-700"
           >
-            Location
+            Country
+          </label>
+          <Select onValueChange={onSelectCountryChange}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Country" />
+            </SelectTrigger>
+            <SelectContent>
+              {countries.map((country) => (
+                <SelectItem key={country.id} value={country.id}>
+                  {country.country}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="country"
+            className="text-lg font-medium text-gray-700"
+          >
+            Region / State
           </label>
           <Select>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="Region" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              {regions.map((region) => (
+                <SelectItem key={region.id} value={region.id}>
+                  {region.region}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
