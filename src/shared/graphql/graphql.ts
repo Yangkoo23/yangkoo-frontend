@@ -50,8 +50,8 @@ export enum BookingStatusType {
 
 export type City = {
   __typename?: 'City';
+  city?: Maybe<Scalars['String']['output']>;
   city_description?: Maybe<Scalars['String']['output']>;
-  city_name?: Maybe<Scalars['String']['output']>;
   created_at: Scalars['DateTime']['output'];
   deleted_at?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['ID']['output'];
@@ -101,8 +101,8 @@ export type CreateAmenity = {
 };
 
 export type CreateCity = {
+  city?: InputMaybe<Scalars['String']['input']>;
   city_description?: InputMaybe<Scalars['String']['input']>;
-  city_name?: InputMaybe<Scalars['String']['input']>;
   region_id: Scalars['String']['input'];
 };
 
@@ -912,6 +912,8 @@ export type Query = {
   __typename?: 'Query';
   amenities: AmenityConnection;
   amenity?: Maybe<Amenity>;
+  citiesByRegionId: Array<Maybe<City>>;
+  city?: Maybe<City>;
   countries: CountryConnection;
   country?: Maybe<Country>;
   file?: Maybe<File>;
@@ -958,6 +960,16 @@ export type QueryAmenitiesArgs = {
 
 
 export type QueryAmenityArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCitiesByRegionIdArgs = {
+  regionId: Scalars['String']['input'];
+};
+
+
+export type QueryCityArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -1197,8 +1209,8 @@ export type UpdateAmenity = {
 };
 
 export type UpdateCity = {
+  city?: InputMaybe<Scalars['String']['input']>;
   city_description?: InputMaybe<Scalars['String']['input']>;
-  city_name?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
 };
 
@@ -1223,6 +1235,7 @@ export type UpdateHotel = {
   hotel_description?: InputMaybe<Scalars['String']['input']>;
   hotel_name?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
+  location_id?: InputMaybe<Scalars['String']['input']>;
   start_category?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -1341,11 +1354,44 @@ export type UserEdge = {
   node: User;
 };
 
+export type CityFragmentFragment = { __typename?: 'City', id: string, city?: string | null, city_description?: string | null, region_id: string } & { ' $fragmentName'?: 'CityFragmentFragment' };
+
 export type CountryFragmentFragment = { __typename?: 'Country', id: string, country?: string | null, country_description?: string | null } & { ' $fragmentName'?: 'CountryFragmentFragment' };
 
 export type HotelFragmentFragment = { __typename?: 'Hotel', id: string, hotel_name: string, hotel_description?: string | null, start_category?: number | null, location_id: string } & { ' $fragmentName'?: 'HotelFragmentFragment' };
 
 export type RegionFragmentFragment = { __typename?: 'Region', id: string, region?: string | null, region_description?: string | null, country_id: string } & { ' $fragmentName'?: 'RegionFragmentFragment' };
+
+export type CreateLocationMutationVariables = Exact<{
+  input: CreateLocation;
+}>;
+
+
+export type CreateLocationMutation = { __typename?: 'Mutation', createLocation: { __typename?: 'Location', id: string } };
+
+export type UpdateHotelMutationVariables = Exact<{
+  input: UpdateHotel;
+}>;
+
+
+export type UpdateHotelMutation = { __typename?: 'Mutation', updateHotel: { __typename?: 'Hotel', id: string } };
+
+export type UpdateLocationMutationVariables = Exact<{
+  input: UpdateLocation;
+}>;
+
+
+export type UpdateLocationMutation = { __typename?: 'Mutation', updateLocation: { __typename?: 'Location', id: string } };
+
+export type CitiesByRegionIdQueryVariables = Exact<{
+  regionId: Scalars['String']['input'];
+}>;
+
+
+export type CitiesByRegionIdQuery = { __typename?: 'Query', citiesByRegionId: Array<(
+    { __typename?: 'City' }
+    & { ' $fragmentRefs'?: { 'CityFragmentFragment': CityFragmentFragment } }
+  ) | null> };
 
 export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1375,9 +1421,14 @@ export type RegionsByCountryIdQuery = { __typename?: 'Query', regionsByCountryId
     & { ' $fragmentRefs'?: { 'RegionFragmentFragment': RegionFragmentFragment } }
   ) | null> };
 
+export const CityFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"City"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"city_description"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}}]}}]} as unknown as DocumentNode<CityFragmentFragment, unknown>;
 export const CountryFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CountryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Country"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"country_description"}}]}}]} as unknown as DocumentNode<CountryFragmentFragment, unknown>;
 export const HotelFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Hotel"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_name"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_description"}},{"kind":"Field","name":{"kind":"Name","value":"start_category"}},{"kind":"Field","name":{"kind":"Name","value":"location_id"}}]}}]} as unknown as DocumentNode<HotelFragmentFragment, unknown>;
 export const RegionFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RegionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Region"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_description"}},{"kind":"Field","name":{"kind":"Name","value":"country_id"}}]}}]} as unknown as DocumentNode<RegionFragmentFragment, unknown>;
+export const CreateLocationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateLocation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLocation"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createLocation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateLocationMutation, CreateLocationMutationVariables>;
+export const UpdateHotelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateHotel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateHotel"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateHotel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateHotelMutation, UpdateHotelMutationVariables>;
+export const UpdateLocationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateLocation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLocation"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateLocation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateLocationMutation, UpdateLocationMutationVariables>;
+export const CitiesByRegionIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CitiesByRegionId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"regionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"citiesByRegionId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"regionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"regionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CityFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"City"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"city_description"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}}]}}]} as unknown as DocumentNode<CitiesByRegionIdQuery, CitiesByRegionIdQueryVariables>;
 export const CountriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Countries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"countries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CountryFragment"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CountryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Country"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"country_description"}}]}}]} as unknown as DocumentNode<CountriesQuery, CountriesQueryVariables>;
 export const HotelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Hotel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Hotel"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_name"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_description"}},{"kind":"Field","name":{"kind":"Name","value":"start_category"}},{"kind":"Field","name":{"kind":"Name","value":"location_id"}}]}}]} as unknown as DocumentNode<HotelQuery, HotelQueryVariables>;
 export const RegionsByCountryIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"RegionsByCountryId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"countryId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"regionsByCountryId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"countryId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"countryId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RegionFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RegionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Region"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_description"}},{"kind":"Field","name":{"kind":"Name","value":"country_id"}}]}}]} as unknown as DocumentNode<RegionsByCountryIdQuery, RegionsByCountryIdQueryVariables>;
