@@ -29,7 +29,7 @@ export function useCreateLocation() {
 
   const createLocationAsync = async (input: CreateLocation) => {
     const response = await mutation.mutateAsync(input);
-    return response.createLocation.id;
+    return response.createLocation;
   };
 
   return {

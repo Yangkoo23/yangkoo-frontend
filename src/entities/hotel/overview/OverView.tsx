@@ -1,7 +1,7 @@
 "use client";
 
 import UpdateInput from "@/shared/ui/UpdateInput";
-import React, { useState } from "react";
+import React from "react";
 import {
   Select,
   SelectContent,
@@ -17,9 +17,18 @@ import {
   useCitiesByRegionId,
   useCreateLocation,
   useUpdateHotel,
+  useUpdateLocation,
 } from "./hooks";
-import { useRegionsStore, useCitiesStore } from "./store";
+import {
+  useRegionsStore,
+  useCitiesStore,
+  useDefaultCountryStore,
+  useDefaultRegionStore,
+  useDefaultLocationStore,
+  useDefaultCityStore,
+} from "./store";
 import { Loader } from "@/shared/ui/Loader";
+import { LocationPickerMap } from "./ui";
 
 export const OverView = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
@@ -27,32 +36,65 @@ export const OverView = () => {
   });
   const { regions } = useRegionsStore();
   const { cities } = useCitiesStore();
-
   const orgId = organization?.id || "";
   const { hotel } = useHotelById(orgId);
   const { countries } = useCountries();
   const { regionsByCountryId } = useRegionsByCountryId();
   const { citiesByRegionId } = useCitiesByRegionId();
   const { createLocationAsync } = useCreateLocation();
-  const { updateHotelAsync } = useUpdateHotel();
-  const [locationId, setLocationId] = useState<string | null>(null);
-
+  const { updateHotelAsync, updateHotel } = useUpdateHotel();
+  const { updateLocation } = useUpdateLocation();
+  const { defaultCountry, setDefaultCountry } = useDefaultCountryStore();
+  const { defaultRegion, setDefaultRegion } = useDefaultRegionStore();
+  const { defaultLocation, setDefaultLocation } = useDefaultLocationStore();
+  const { defaultCity, setDefaultCity } = useDefaultCityStore();
   const onSelectCountryChange = (countryId: string) => {
+    setDefaultCountry(null);
+    setDefaultRegion(null);
+    setDefaultCity(null);
+    setDefaultLocation(null);
     regionsByCountryId(countryId);
   };
 
   const onSelectRegionChange = (regionId: string) => {
+    setDefaultRegion(null);
+    setDefaultCity(null);
+    setDefaultLocation(null);
     citiesByRegionId(regionId);
   };
 
   const onSelectCityChange = async (cityId: string) => {
-    const id = await createLocationAsync({
+    setDefaultCity(null);
+    setDefaultLocation(null);
+    const location = await createLocationAsync({
       city_id: cityId,
       location_name: "",
     });
-    setLocationId(id);
-    const hotel = await updateHotelAsync({ id: orgId, location_id: id });
-    console.log(hotel);
+    setDefaultLocation(location);
+    await updateHotelAsync({
+      id: orgId,
+      location_id: location.id,
+    });
+  };
+
+  const onLocationSelect = (location: {
+    lat: number | undefined;
+    lng: number | undefined;
+  }) => {
+    updateHotel({
+      id: orgId,
+      latitude: location.lat,
+      longitude: location.lng,
+    });
+    console.log(location);
+  };
+
+  const onUpdateLocation = (locationName: string) => {
+    if (!defaultLocation) return;
+    updateLocation({
+      id: defaultLocation?.id,
+      location_name: locationName,
+    });
   };
 
   if (!orgLoaded) {
@@ -89,7 +131,7 @@ export const OverView = () => {
           </label>
           <Select onValueChange={onSelectCountryChange}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Country" />
+              <SelectValue placeholder={defaultCountry?.country || "Country"} />
             </SelectTrigger>
             <SelectContent>
               {countries.map((country) => (
@@ -110,7 +152,7 @@ export const OverView = () => {
             </label>
             <Select onValueChange={onSelectRegionChange}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Region" />
+                <SelectValue placeholder={defaultRegion?.region || "Region"} />
               </SelectTrigger>
               <SelectContent>
                 {regions.map((region) => (
@@ -132,7 +174,7 @@ export const OverView = () => {
             </label>
             <Select onValueChange={onSelectCityChange}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="City" />
+                <SelectValue placeholder={defaultCity?.city || "City"} />
               </SelectTrigger>
               <SelectContent>
                 {cities.map((city) => (
@@ -144,7 +186,7 @@ export const OverView = () => {
             </Select>
           </div>
         )}
-        {locationId && (
+        {defaultLocation && (
           <div className="flex flex-col gap-2">
             <label
               htmlFor="location"
@@ -155,14 +197,21 @@ export const OverView = () => {
             <UpdateInput
               id="location"
               name="location"
-              value={hotel.hotel_name}
-              onChange={(value) => console.log(value)}
+              value={defaultLocation?.location_name || ""}
+              onChange={onUpdateLocation}
               placeholder="Enter Location Name"
               type="text"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         )}
+        <div className="flex flex-col gap-2">
+          <LocationPickerMap
+            onLocationSelect={onLocationSelect}
+            lat={hotel.latitude}
+            lng={hotel.longitude}
+          />
+        </div>
       </div>
     </div>
   );

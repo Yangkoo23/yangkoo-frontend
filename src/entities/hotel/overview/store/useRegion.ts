@@ -10,3 +10,13 @@ export const useRegionsStore = create<RegionsState>()((set) => ({
   regions: [],
   setRegions: (regions) => set({ regions }),
 }));
+
+interface DefaultRegionState {
+  defaultRegion: Region | null;
+  setDefaultRegion: (defaultRegion: Region | null) => void;
+}
+
+export const useDefaultRegionStore = create<DefaultRegionState>()((set) => ({
+  defaultRegion: null,
+  setDefaultRegion: (defaultRegion) => set({ defaultRegion }),
+}));

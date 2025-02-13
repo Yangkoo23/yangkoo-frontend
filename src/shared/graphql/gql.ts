@@ -16,9 +16,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 type Documents = {
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": typeof types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": typeof types.CountryFragmentFragmentDoc,
-    "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n  }\n": typeof types.HotelFragmentFragmentDoc,
+    "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n": typeof types.HotelFragmentFragmentDoc,
     "\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n": typeof types.RegionFragmentFragmentDoc,
-    "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n    }\n  }\n": typeof types.CreateLocationDocument,
+    "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n": typeof types.CreateLocationDocument,
     "\n  mutation UpdateHotel($input: UpdateHotel!) {\n    updateHotel(input: $input) {\n      id\n    }\n  }\n": typeof types.UpdateHotelDocument,
     "\n  mutation UpdateLocation($input: UpdateLocation!) {\n    updateLocation(input: $input) {\n      id\n    }\n  }\n": typeof types.UpdateLocationDocument,
     "\n  query CitiesByRegionId($regionId: String!) {\n    citiesByRegionId(regionId: $regionId) {\n      ...CityFragment\n    }\n  }\n": typeof types.CitiesByRegionIdDocument,
@@ -29,9 +29,9 @@ type Documents = {
 const documents: Documents = {
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": types.CountryFragmentFragmentDoc,
-    "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n  }\n": types.HotelFragmentFragmentDoc,
+    "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n": types.HotelFragmentFragmentDoc,
     "\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n": types.RegionFragmentFragmentDoc,
-    "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n    }\n  }\n": types.CreateLocationDocument,
+    "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n": types.CreateLocationDocument,
     "\n  mutation UpdateHotel($input: UpdateHotel!) {\n    updateHotel(input: $input) {\n      id\n    }\n  }\n": types.UpdateHotelDocument,
     "\n  mutation UpdateLocation($input: UpdateLocation!) {\n    updateLocation(input: $input) {\n      id\n    }\n  }\n": types.UpdateLocationDocument,
     "\n  query CitiesByRegionId($regionId: String!) {\n    citiesByRegionId(regionId: $regionId) {\n      ...CityFragment\n    }\n  }\n": types.CitiesByRegionIdDocument,
@@ -65,7 +65,7 @@ export function graphql(source: "\n  fragment CountryFragment on Country {\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n  }\n"): (typeof documents)["\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n  }\n"];
+export function graphql(source: "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -73,7 +73,7 @@ export function graphql(source: "\n  fragment RegionFragment on Region {\n    id
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n    }\n  }\n"];
+export function graphql(source: "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n"): (typeof documents)["\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
