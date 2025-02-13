@@ -28,7 +28,8 @@ import {
   useDefaultCityStore,
 } from "./store";
 import { Loader } from "@/shared/ui/Loader";
-import { LocationPickerMap } from "./ui";
+import { LocationPickerMap, StarPicker } from "./ui";
+import UpdateTextArea from "@/shared/ui/UpdateTextArea";
 
 export const OverView = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
@@ -97,6 +98,13 @@ export const OverView = () => {
     });
   };
 
+  const onUpdateDescription = (description: string) => {
+    updateHotelAsync({
+      id: orgId,
+      hotel_description: description,
+    });
+  };
+
   if (!orgLoaded) {
     return <Loader />;
   }
@@ -120,6 +128,39 @@ export const OverView = () => {
             placeholder="Enter hotel name"
             type="text"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="starCategory"
+            className="text-lg font-medium text-gray-700"
+          >
+            Star Category
+          </label>
+          <StarPicker
+            value={hotel.start_category || 0}
+            onChange={(value) =>
+              updateHotelAsync({
+                id: orgId,
+                start_category: value,
+              })
+            }
+          />
+        </div>
+        {/* Add Hotel Description */}
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="description"
+            className="text-lg font-medium text-gray-700"
+          >
+            Hotel Description
+          </label>
+          <UpdateTextArea
+            id="description"
+            value={hotel.hotel_description || ""}
+            onChange={onUpdateDescription}
+            name="description"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
           />
         </div>
         <div className="flex flex-col gap-2">
