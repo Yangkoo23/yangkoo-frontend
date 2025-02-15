@@ -15,7 +15,6 @@ import {
 import { Country, Region, City } from "../../types/types";
 import { useRegionsByCountryId } from "./useRegionsByCountryId";
 import { useCitiesByRegionId } from "./useCitiesByRegionId";
-import {} from "./";
 export function useHotelById(orgId: string) {
   const requestAPI = useRequestAPI();
   const { setDefaultCountry } = useDefaultCountryStore();

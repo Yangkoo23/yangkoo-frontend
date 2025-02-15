@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "plus.unsplash.com",
+        hostname: "d181lxzl3rji6p.cloudfront.net",
       },
     ],
   },

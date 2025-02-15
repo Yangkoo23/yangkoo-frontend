@@ -3,8 +3,93 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { PhotoView } from "react-photo-view";
 import { Upload } from "lucide-react"; // Importing an icon
+import { useRef, useState } from "react";
+import { getPresignedUrl } from "@/shared/utils";
+import { useHotelImagesStore } from "../store";
 
-export function HotelImages() {
+type Props = {
+  hotelId: string;
+  onUploadHotelImage: (
+    fileName: string,
+    hotel_id: string,
+    fileType: string,
+    key: string
+  ) => void;
+};
+export function HotelImages({ hotelId, onUploadHotelImage }: Props) {
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const { hotelImages, addHotelImage } = useHotelImagesStore();
+  const MAX_FILE_SIZE_MB = 5;
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setError(null);
+
+      if (selectedFile.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+        setError(`File size exceeds the limit of ${MAX_FILE_SIZE_MB} MB.`);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        return;
+      }
+
+      try {
+        setIsUploading(true);
+        setUploadProgress(0);
+        const sanitizedFileName = selectedFile.name.replace(/\s+/g, "_");
+        const presignedUrl = await getPresignedUrl(
+          sanitizedFileName,
+          selectedFile.type,
+          hotelId
+        );
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", presignedUrl, true);
+        xhr.setRequestHeader("Content-Type", selectedFile.type);
+
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const progress = (event.loaded / event.total) * 100;
+            setUploadProgress(progress);
+          }
+        };
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            onUploadHotelImage(
+              sanitizedFileName,
+              hotelId,
+              selectedFile.type,
+              `${hotelId}/${sanitizedFileName}`
+            );
+            const imageUrl = URL.createObjectURL(selectedFile);
+            addHotelImage(imageUrl);
+            setPreviewUrl(imageUrl);
+          } else {
+            throw new Error(xhr.responseText);
+          }
+          setIsUploading(false);
+        };
+
+        xhr.onerror = () => {
+          setIsUploading(false);
+          throw new Error(xhr.responseText);
+        };
+
+        xhr.send(selectedFile);
+      } catch (error) {
+        setIsUploading(false);
+        throw new Error("Error uploading file:", error as Error);
+      }
+    }
+  };
   return (
     <>
       <label
@@ -16,28 +101,26 @@ export function HotelImages() {
 
       <div className="flex flex-col border border-gray-400 rounded-lg p-4">
         <div className="grid grid-cols-2 gap-4">
-          <PhotoView src="https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWx8ZW58MHx8MHx8fDA%3D">
-            <Image
-              src="https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWx8ZW58MHx8MHx8fDA%3D"
-              alt=""
-              width={150}
-              height={150}
-              className="rounded-xl"
-            />
-          </PhotoView>
-          <PhotoView src="https://plus.unsplash.com/premium_photo-1661929519129-7a76946c1d38?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG90ZWx8ZW58MHx8MHx8fDA%3D">
-            <Image
-              src="https://plus.unsplash.com/premium_photo-1661929519129-7a76946c1d38?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG90ZWx8ZW58MHx8MHx8fDA%3D"
-              alt=""
-              width={150}
-              height={150}
-              className="rounded-xl"
-            />
-          </PhotoView>
+          {hotelImages.map((url, index) => (
+            <PhotoView src={url} key={index}>
+              <Image
+                src={url}
+                alt=""
+                width={150}
+                height={150}
+                className="rounded-xl"
+              />
+            </PhotoView>
+          ))}
         </div>
         <div className="flex flex-col justify-center mt-4">
           {/* Hidden File Input */}
-          <Input id="hotelImages" type="file" className="hidden" />
+          <Input
+            id="hotelImages"
+            type="file"
+            className="hidden"
+            onChange={handleFileChange}
+          />
 
           {/* Styled Upload Button */}
           <label

@@ -18,6 +18,8 @@ import {
   useCreateLocation,
   useUpdateHotel,
   useUpdateLocation,
+  useCreateHotelFile,
+  useImagesByHotelId,
 } from "./hooks";
 import {
   useRegionsStore,
@@ -32,6 +34,7 @@ import { LocationPickerMap, StarPicker } from "./ui";
 import UpdateTextArea from "@/shared/ui/UpdateTextArea";
 import { HotelImages } from "./ui/HotelImages";
 import { Button } from "@/components/ui/button";
+import { on } from "events";
 
 export const OverView = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
@@ -47,10 +50,13 @@ export const OverView = () => {
   const { createLocationAsync } = useCreateLocation();
   const { updateHotelAsync, updateHotel } = useUpdateHotel();
   const { updateLocation } = useUpdateLocation();
+  const { createHotelFile } = useCreateHotelFile();
+  const { isLoading } = useImagesByHotelId(orgId);
   const { defaultCountry, setDefaultCountry } = useDefaultCountryStore();
   const { defaultRegion, setDefaultRegion } = useDefaultRegionStore();
   const { defaultLocation, setDefaultLocation } = useDefaultLocationStore();
   const { defaultCity, setDefaultCity } = useDefaultCityStore();
+
   const onSelectCountryChange = (countryId: string) => {
     setDefaultCountry(null);
     setDefaultRegion(null);
@@ -107,12 +113,32 @@ export const OverView = () => {
     });
   };
 
-  if (!orgLoaded) {
+  const onUpdateHotelName = (name: string) => {
+    updateHotelAsync({
+      id: orgId,
+      hotel_name: name,
+    });
+  };
+  const onUploadHotelImage = (
+    fileName: string,
+    hotel_id: string,
+    fileType: string,
+    key: string
+  ) => {
+    createHotelFile({
+      caption: fileName,
+      mimetype: fileType,
+      file_key: key,
+      file_type: fileType,
+      hotel_id: hotel_id,
+    });
+  };
+  if (!orgLoaded || isLoading) {
     return <Loader />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center container mx-auto py-10 border border-red-600 min-h-screen md:w-[80vw]">
+    <div className="flex flex-col items-center justify-center container mx-auto py-10 shadow-lg border border-gray-300 rounded-xl min-h-screen w-[100vw] md:w-[80vw]">
       <h1 className="text-3xl font-bold mb-8">Overview</h1>
       <div className="w-full max-w-md space-y-4">
         <div className="flex flex-col gap-2">
@@ -126,7 +152,7 @@ export const OverView = () => {
             id="hotelName"
             name="name"
             value={hotel.hotel_name}
-            onChange={(value) => console.log(value)}
+            onChange={onUpdateHotelName}
             placeholder="Enter hotel name"
             type="text"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -166,7 +192,10 @@ export const OverView = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <HotelImages />
+          <HotelImages
+            hotelId={orgId}
+            onUploadHotelImage={onUploadHotelImage}
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label

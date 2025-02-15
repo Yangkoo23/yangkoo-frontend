@@ -3,6 +3,7 @@ import {
   RegionFragmentFragment,
   CityFragmentFragment,
   Location as LocationType,
+  FileFragmentFragment,
 } from "@/shared/graphql/graphql";
 
 export type Country = NonNullable<CountryFragmentFragment>;
@@ -12,3 +13,4 @@ export type Location = Omit<
   LocationType,
   "__typename" | "updated_at" | "deleted_at" | "created_at"
 >;
+export type File = NonNullable<FileFragmentFragment>;
