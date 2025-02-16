@@ -2,11 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import { CreateFile, CreateFileMutation } from "@/shared/graphql/graphql";
 import { createHotelFileMutation } from "../../schema/mutations/createHotelFile";
 import { useRequestAPI } from "@/shared/utils/request";
-import { useHotelImagesStore } from "../../store";
 
 export function useCreateHotelFile() {
   const requestAPI = useRequestAPI();
-  const { hotelImages, setHotelImages } = useHotelImagesStore();
   const mutation = useMutation({
     mutationFn: async (input: CreateFile) => {
       const res = await requestAPI<CreateFileMutation>(
