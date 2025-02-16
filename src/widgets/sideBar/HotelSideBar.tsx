@@ -1,5 +1,5 @@
 "use client";
-import { House, Bath, Ruler } from "lucide-react";
+import { House, Bath, Ruler, ShowerHead } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import {
   Sidebar,
@@ -31,6 +31,11 @@ const items = [
     title: "Hotel Policy",
     url: "/hotel/policy",
     icon: Ruler,
+  },
+  {
+    title: "Hotel Amenities",
+    url: "/hotel/amenity",
+    icon: ShowerHead,
   },
 ];
 

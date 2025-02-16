@@ -2,10 +2,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/nextjs";
 
 export function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { orgId } = useAuth();
 
   return (
     <nav className="flex items-center justify-between p-2 border backdrop-blur-xl bg-white/30  rounded-full">
@@ -16,13 +17,6 @@ export function NavigationBar() {
 
       {/* Links for Desktop */}
       <div className="hidden md:flex space-x-4">
-        <Button
-          asChild
-          variant="outline"
-          className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
-        >
-          <Link href="/choose-entities">List your property</Link>
-        </Button>
         <SignedOut>
           <Button asChild className="text-white rounded-full">
             <Link href="/home/sign-up">Register</Link>
@@ -36,6 +30,23 @@ export function NavigationBar() {
           </Button>
         </SignedOut>
         <SignedIn>
+          {orgId ? (
+            <Button
+              asChild
+              variant="outline"
+              className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
+            >
+              <Link href={`/hotel`}>Dashboard</Link>
+            </Button>
+          ) : (
+            <Button
+              asChild
+              variant="outline"
+              className="text-[hsl(var(--secondary))] border border-[hsl(var(--secondary))] rounded-full"
+            >
+              <Link href="/choose-entities">List your property</Link>
+            </Button>
+          )}
           <UserButton />
         </SignedIn>
         <Button variant={"ghost"} className="text-3xl">
