@@ -14,6 +14,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n": typeof types.AmenityFragmentFragmentDoc,
+    "\n  fragment HotelAmenityFragment on HotelAmenity {\n    id\n    hotel_id\n    amenity_id\n  }\n": typeof types.HotelAmenityFragmentFragmentDoc,
+    "\n  mutation CreateHotelAmenity($input: CreateHotelAmenity!) {\n    createHotelAmenity(input: $input) {\n      ...HotelAmenityFragment\n    }\n  }\n": typeof types.CreateHotelAmenityDocument,
+    "\n  mutation DeleteHotelAmenity($id: ID!) {\n    deleteHotelAmenity(id: $id)\n  }\n": typeof types.DeleteHotelAmenityDocument,
+    "\n  query Amenities {\n    amenities(first: 18) {\n      edges {\n        node {\n          ...AmenityFragment\n        }\n      }\n    }\n  }\n": typeof types.AmenitiesDocument,
+    "\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n": typeof types.HotelAmenitiesDocument,
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": typeof types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": typeof types.CountryFragmentFragmentDoc,
     "\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": typeof types.FileFragmentFragmentDoc,
@@ -35,6 +41,12 @@ type Documents = {
     "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n": typeof types.HotelPoliciesByHotelIdDocument,
 };
 const documents: Documents = {
+    "\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n": types.AmenityFragmentFragmentDoc,
+    "\n  fragment HotelAmenityFragment on HotelAmenity {\n    id\n    hotel_id\n    amenity_id\n  }\n": types.HotelAmenityFragmentFragmentDoc,
+    "\n  mutation CreateHotelAmenity($input: CreateHotelAmenity!) {\n    createHotelAmenity(input: $input) {\n      ...HotelAmenityFragment\n    }\n  }\n": types.CreateHotelAmenityDocument,
+    "\n  mutation DeleteHotelAmenity($id: ID!) {\n    deleteHotelAmenity(id: $id)\n  }\n": types.DeleteHotelAmenityDocument,
+    "\n  query Amenities {\n    amenities(first: 18) {\n      edges {\n        node {\n          ...AmenityFragment\n        }\n      }\n    }\n  }\n": types.AmenitiesDocument,
+    "\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n": types.HotelAmenitiesDocument,
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": types.CountryFragmentFragmentDoc,
     "\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": types.FileFragmentFragmentDoc,
@@ -70,6 +82,30 @@ const documents: Documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n"): (typeof documents)["\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment HotelAmenityFragment on HotelAmenity {\n    id\n    hotel_id\n    amenity_id\n  }\n"): (typeof documents)["\n  fragment HotelAmenityFragment on HotelAmenity {\n    id\n    hotel_id\n    amenity_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateHotelAmenity($input: CreateHotelAmenity!) {\n    createHotelAmenity(input: $input) {\n      ...HotelAmenityFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelAmenity($input: CreateHotelAmenity!) {\n    createHotelAmenity(input: $input) {\n      ...HotelAmenityFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation DeleteHotelAmenity($id: ID!) {\n    deleteHotelAmenity(id: $id)\n  }\n"): (typeof documents)["\n  mutation DeleteHotelAmenity($id: ID!) {\n    deleteHotelAmenity(id: $id)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Amenities {\n    amenities(first: 18) {\n      edges {\n        node {\n          ...AmenityFragment\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query Amenities {\n    amenities(first: 18) {\n      edges {\n        node {\n          ...AmenityFragment\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

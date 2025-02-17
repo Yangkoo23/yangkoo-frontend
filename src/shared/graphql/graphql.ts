@@ -25,6 +25,7 @@ export type Amenity = {
   deleted_at?: Maybe<Scalars['DateTime']['output']>;
   icon?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  type?: Maybe<AmenityType>;
   updated_at?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -40,6 +41,17 @@ export type AmenityEdge = {
   cursor: Scalars['String']['output'];
   node: Amenity;
 };
+
+export enum AmenityType {
+  Accessibility = 'ACCESSIBILITY',
+  Basic = 'BASIC',
+  BusinessConnectivity = 'BUSINESS_CONNECTIVITY',
+  DiningFoodOptions = 'DINING_FOOD_OPTIONS',
+  Facility = 'FACILITY',
+  FamilyPetFriendly = 'FAMILY_PET_FRIENDLY',
+  TransportationLocation = 'TRANSPORTATION_LOCATION',
+  WellnessRecreation = 'WELLNESS_RECREATION'
+}
 
 export enum BookingStatusType {
   Cancelled = 'CANCELLED',
@@ -935,6 +947,7 @@ export type Query = {
   filesByHotelId: ImageUrls;
   hotel?: Maybe<Hotel>;
   hotelAmenities: HotelAmenityConnection;
+  hotelAmenitiesByHotelId?: Maybe<Array<Maybe<HotelAmenity>>>;
   hotelAmenity?: Maybe<HotelAmenity>;
   hotelBooking?: Maybe<HotelBooking>;
   hotelBookingPayment?: Maybe<HotelBookingPayment>;
@@ -1025,6 +1038,11 @@ export type QueryHotelArgs = {
 export type QueryHotelAmenitiesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryHotelAmenitiesByHotelIdArgs = {
+  hotelId: Scalars['String']['input'];
 };
 
 
@@ -1384,6 +1402,45 @@ export type UserEdge = {
   node: User;
 };
 
+export type AmenityFragmentFragment = { __typename?: 'Amenity', id: string, amenity: string, icon?: string | null, type?: AmenityType | null } & { ' $fragmentName'?: 'AmenityFragmentFragment' };
+
+export type HotelAmenityFragmentFragment = { __typename?: 'HotelAmenity', id: string, hotel_id: string, amenity_id: string } & { ' $fragmentName'?: 'HotelAmenityFragmentFragment' };
+
+export type CreateHotelAmenityMutationVariables = Exact<{
+  input: CreateHotelAmenity;
+}>;
+
+
+export type CreateHotelAmenityMutation = { __typename?: 'Mutation', createHotelAmenity: (
+    { __typename?: 'HotelAmenity' }
+    & { ' $fragmentRefs'?: { 'HotelAmenityFragmentFragment': HotelAmenityFragmentFragment } }
+  ) };
+
+export type DeleteHotelAmenityMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteHotelAmenityMutation = { __typename?: 'Mutation', deleteHotelAmenity: boolean };
+
+export type AmenitiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AmenitiesQuery = { __typename?: 'Query', amenities: { __typename?: 'AmenityConnection', edges: Array<{ __typename?: 'AmenityEdge', node: (
+        { __typename?: 'Amenity' }
+        & { ' $fragmentRefs'?: { 'AmenityFragmentFragment': AmenityFragmentFragment } }
+      ) }> } };
+
+export type HotelAmenitiesQueryVariables = Exact<{
+  hotelId: Scalars['String']['input'];
+}>;
+
+
+export type HotelAmenitiesQuery = { __typename?: 'Query', hotelAmenitiesByHotelId?: Array<(
+    { __typename?: 'HotelAmenity' }
+    & { ' $fragmentRefs'?: { 'HotelAmenityFragmentFragment': HotelAmenityFragmentFragment } }
+  ) | null> | null };
+
 export type CityFragmentFragment = { __typename?: 'City', id: string, city?: string | null, city_description?: string | null, region_id: string } & { ' $fragmentName'?: 'CityFragmentFragment' };
 
 export type CountryFragmentFragment = { __typename?: 'Country', id: string, country?: string | null, country_description?: string | null } & { ' $fragmentName'?: 'CountryFragmentFragment' };
@@ -1518,12 +1575,18 @@ export type HotelPoliciesByHotelIdQuery = { __typename?: 'Query', hotelPoliciesB
     & { ' $fragmentRefs'?: { 'HotelPolicyFragmentFragment': HotelPolicyFragmentFragment } }
   ) | null> | null };
 
+export const AmenityFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AmenityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Amenity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"amenity"}},{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]} as unknown as DocumentNode<AmenityFragmentFragment, unknown>;
+export const HotelAmenityFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelAmenityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelAmenity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}},{"kind":"Field","name":{"kind":"Name","value":"amenity_id"}}]}}]} as unknown as DocumentNode<HotelAmenityFragmentFragment, unknown>;
 export const FileFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"File"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"mimetype"}},{"kind":"Field","name":{"kind":"Name","value":"file_key"}},{"kind":"Field","name":{"kind":"Name","value":"file_type"}}]}}]} as unknown as DocumentNode<FileFragmentFragment, unknown>;
 export const CityFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"City"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"city_description"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}}]}}]} as unknown as DocumentNode<CityFragmentFragment, unknown>;
 export const RegionFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RegionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Region"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_description"}},{"kind":"Field","name":{"kind":"Name","value":"country_id"}}]}}]} as unknown as DocumentNode<RegionFragmentFragment, unknown>;
 export const CountryFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CountryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Country"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"country_description"}}]}}]} as unknown as DocumentNode<CountryFragmentFragment, unknown>;
 export const HotelFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Hotel"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_name"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_description"}},{"kind":"Field","name":{"kind":"Name","value":"start_category"}},{"kind":"Field","name":{"kind":"Name","value":"location_id"}},{"kind":"Field","name":{"kind":"Name","value":"latitude"}},{"kind":"Field","name":{"kind":"Name","value":"longitude"}},{"kind":"Field","name":{"kind":"Name","value":"Location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"location_name"}},{"kind":"Field","name":{"kind":"Name","value":"location_description"}},{"kind":"Field","name":{"kind":"Name","value":"City"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CityFragment"}},{"kind":"Field","name":{"kind":"Name","value":"Region"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RegionFragment"}},{"kind":"Field","name":{"kind":"Name","value":"Country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CountryFragment"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"City"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"city_description"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RegionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Region"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_description"}},{"kind":"Field","name":{"kind":"Name","value":"country_id"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CountryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Country"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"country_description"}}]}}]} as unknown as DocumentNode<HotelFragmentFragment, unknown>;
 export const HotelPolicyFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelPolicyFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelPolicy"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_policy"}},{"kind":"Field","name":{"kind":"Name","value":"policy_name"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}}]}}]} as unknown as DocumentNode<HotelPolicyFragmentFragment, unknown>;
+export const CreateHotelAmenityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateHotelAmenity"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateHotelAmenity"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createHotelAmenity"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelAmenityFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelAmenityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelAmenity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}},{"kind":"Field","name":{"kind":"Name","value":"amenity_id"}}]}}]} as unknown as DocumentNode<CreateHotelAmenityMutation, CreateHotelAmenityMutationVariables>;
+export const DeleteHotelAmenityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteHotelAmenity"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteHotelAmenity"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteHotelAmenityMutation, DeleteHotelAmenityMutationVariables>;
+export const AmenitiesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Amenities"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amenities"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"18"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"AmenityFragment"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AmenityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Amenity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"amenity"}},{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]} as unknown as DocumentNode<AmenitiesQuery, AmenitiesQueryVariables>;
+export const HotelAmenitiesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelAmenities"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelAmenitiesByHotelId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelAmenityFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelAmenityFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelAmenity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}},{"kind":"Field","name":{"kind":"Name","value":"amenity_id"}}]}}]} as unknown as DocumentNode<HotelAmenitiesQuery, HotelAmenitiesQueryVariables>;
 export const CreateFileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateFile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateFile"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createFile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"File"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"mimetype"}},{"kind":"Field","name":{"kind":"Name","value":"file_key"}},{"kind":"Field","name":{"kind":"Name","value":"file_type"}}]}}]} as unknown as DocumentNode<CreateFileMutation, CreateFileMutationVariables>;
 export const CreateLocationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateLocation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLocation"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createLocation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"location_name"}},{"kind":"Field","name":{"kind":"Name","value":"location_description"}},{"kind":"Field","name":{"kind":"Name","value":"city_id"}}]}}]}}]} as unknown as DocumentNode<CreateLocationMutation, CreateLocationMutationVariables>;
 export const UpdateHotelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateHotel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateHotel"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateHotel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateHotelMutation, UpdateHotelMutationVariables>;

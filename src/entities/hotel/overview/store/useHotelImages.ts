@@ -1,4 +1,3 @@
-import { File } from "../types/types";
 import { create } from "zustand";
 
 interface HotelImagesState {
