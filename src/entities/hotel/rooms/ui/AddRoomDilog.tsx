@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useRoomForm } from "../forms";
 import {
   Form,
@@ -32,7 +31,14 @@ export function AddRoomDialog({ isModalOpen, setIsModalOpen }: Props) {
   const handleClose = () => {
     setIsModalOpen(false);
   };
-  const { roomForm, control } = useRoomForm();
+  const { roomForm, control, handleSubmit, reset } = useRoomForm();
+
+  const handleFormSubmit = (data: any) => {
+    console.log("Form Submitted", data);
+    toast.success("Room added successfully!");
+    reset();
+    handleClose();
+  };
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -43,7 +49,10 @@ export function AddRoomDialog({ isModalOpen, setIsModalOpen }: Props) {
         </DialogHeader>
         <div>
           <Form {...roomForm}>
-            <form className="w-full max-w-3xl space-y-5">
+            <form
+              onSubmit={handleSubmit(handleFormSubmit)}
+              className="w-full max-w-3xl space-y-5"
+            >
               <div>
                 <FormField
                   control={control}
@@ -67,10 +76,22 @@ export function AddRoomDialog({ isModalOpen, setIsModalOpen }: Props) {
                     name="size"
                     render={({ field, fieldState: { error } }) => (
                       <FormItem>
+                        <FormLabel>Size</FormLabel>
                         <FormControl>
-                          <Input placeholder="Room Size" {...field} />
+                          <Input
+                            placeholder="Size"
+                            {...field}
+                            value={field.value || ""}
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value)
+                              )
+                            }
+                          />
                         </FormControl>
-                        <FormDescription>Room Type is Required</FormDescription>
+                        <FormDescription>Room Size is Required</FormDescription>
                         <FormMessage>{error?.message}</FormMessage>{" "}
                       </FormItem>
                     )}
@@ -82,15 +103,75 @@ export function AddRoomDialog({ isModalOpen, setIsModalOpen }: Props) {
                     name="quantity"
                     render={({ field, fieldState: { error } }) => (
                       <FormItem>
+                        <FormLabel>Quantity</FormLabel>
                         <FormControl>
-                          <Input placeholder="Room Quantity" {...field} />
+                          <Input
+                            placeholder="Quantity"
+                            {...field}
+                            value={field.value || ""}
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value)
+                              )
+                            }
+                          />
                         </FormControl>
-                        <FormDescription>Room Type is Required</FormDescription>
+                        <FormDescription>Quantity is Required</FormDescription>
                         <FormMessage>{error?.message}</FormMessage>{" "}
                       </FormItem>
                     )}
                   />
                 </div>
+              </div>
+              <div className="flex flex-row space-x-14">
+                <div>
+                  <FormField
+                    control={control}
+                    name="bedType"
+                    render={({ field, fieldState: { error } }) => (
+                      <FormItem>
+                        <FormLabel>Bed Type</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Bed Type" {...field} />
+                        </FormControl>
+                        <FormDescription>Bed Type is Required</FormDescription>
+                        <FormMessage>{error?.message}</FormMessage>{" "}
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <FormField
+                    control={control}
+                    name="capacity"
+                    render={({ field, fieldState: { error } }) => (
+                      <FormItem>
+                        <FormLabel>Capacity</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Capacity"
+                            {...field}
+                            value={field.value || ""}
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value)
+                              )
+                            }
+                          />
+                        </FormControl>
+                        <FormDescription>Capacity is Required</FormDescription>
+                        <FormMessage>{error?.message}</FormMessage>{" "}
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-row justify-center">
+                <Button type="submit">Add</Button>
               </div>
             </form>
           </Form>
