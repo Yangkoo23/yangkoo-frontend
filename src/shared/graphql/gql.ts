@@ -39,6 +39,11 @@ type Documents = {
     "\n  mutation DeleteHotelPolicy($id: ID!) {\n    deleteHotelPolicy(id: $id)\n  }\n": typeof types.DeleteHotelPolicyDocument,
     "\n  mutation UpdateHotelPolicy($input: UpdateHotelPolicy!) {\n    updateHotelPolicy(input: $input) {\n      ...HotelPolicyFragment\n    }\n  }\n": typeof types.UpdateHotelPolicyDocument,
     "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n": typeof types.HotelPoliciesByHotelIdDocument,
+    "\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n": typeof types.HotelRoomFragmentFragmentDoc,
+    "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.CreateHotelRoomDocument,
+    "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": typeof types.DeleteHotelRoomDocument,
+    "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.UpdateHotelRoomDocument,
+    "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomsByHotelIdDocument,
 };
 const documents: Documents = {
     "\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n": types.AmenityFragmentFragmentDoc,
@@ -66,6 +71,11 @@ const documents: Documents = {
     "\n  mutation DeleteHotelPolicy($id: ID!) {\n    deleteHotelPolicy(id: $id)\n  }\n": types.DeleteHotelPolicyDocument,
     "\n  mutation UpdateHotelPolicy($input: UpdateHotelPolicy!) {\n    updateHotelPolicy(input: $input) {\n      ...HotelPolicyFragment\n    }\n  }\n": types.UpdateHotelPolicyDocument,
     "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n": types.HotelPoliciesByHotelIdDocument,
+    "\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n": types.HotelRoomFragmentFragmentDoc,
+    "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.CreateHotelRoomDocument,
+    "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": types.DeleteHotelRoomDocument,
+    "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.UpdateHotelRoomDocument,
+    "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomsByHotelIdDocument,
 };
 
 /**
@@ -182,6 +192,26 @@ export function graphql(source: "\n  mutation UpdateHotelPolicy($input: UpdateHo
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n"): (typeof documents)["\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n"): (typeof documents)["\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

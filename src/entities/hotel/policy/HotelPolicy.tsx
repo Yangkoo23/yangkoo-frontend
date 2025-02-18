@@ -7,7 +7,6 @@ import UpdateTextArea from "@/shared/ui/UpdateTextArea";
 import { Button } from "@/components/ui/button";
 import { AddPolicyDialog } from "./ui";
 import {
-  useHotelPoliciesByHotelId,
   useCreateHotelPolicy,
   useUpdateHotelPolicyPolicy,
   useDeleteHotelPolicyPolicy,
@@ -21,7 +20,6 @@ export const HotelPolicy = () => {
   const orgId = organization?.id || "";
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const { policies } = useHotelPoliciesByHotelId(orgId);
   const { createHotelPolicyAsync } = useCreateHotelPolicy();
   const { updateHotelPolicy } = useUpdateHotelPolicyPolicy();
   const { deleteHotelPolicy } = useDeleteHotelPolicyPolicy();
