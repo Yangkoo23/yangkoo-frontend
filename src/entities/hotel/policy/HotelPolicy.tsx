@@ -10,6 +10,7 @@ import {
   useCreateHotelPolicy,
   useUpdateHotelPolicyPolicy,
   useDeleteHotelPolicyPolicy,
+  useHotelPoliciesByHotelId,
 } from "./hooks";
 import { useHotelPoliciesStore } from "./store";
 
@@ -23,15 +24,15 @@ export const HotelPolicy = () => {
   const { createHotelPolicyAsync } = useCreateHotelPolicy();
   const { updateHotelPolicy } = useUpdateHotelPolicyPolicy();
   const { deleteHotelPolicy } = useDeleteHotelPolicyPolicy();
+  const { isLoading } = useHotelPoliciesByHotelId(orgId);
   const { hotelPolicies } = useHotelPoliciesStore();
-
+  console.log(hotelPolicies);
   const handleAddPolicy = async (policy_name: string, policy: string) => {
     await createHotelPolicyAsync({
       policy_name: policy_name,
       hotel_policy: policy,
       hotel_id: orgId,
     });
-    console.log(orgId, policy_name, policy);
   };
 
   const handleUpdatePolicy = (id: string, policy: string) => {
@@ -43,7 +44,7 @@ export const HotelPolicy = () => {
   const handleDeletePolicy = (id: string) => {
     deleteHotelPolicy(id);
   };
-  if (!orgLoaded) {
+  if (!orgLoaded || isLoading) {
     return <Loader />;
   }
 

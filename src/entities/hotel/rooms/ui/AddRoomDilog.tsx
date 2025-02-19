@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
-import { useRoomForm } from "../forms";
+import { useRoomForm, RoomFormData } from "../forms";
 import {
   Form,
   FormControl,
@@ -25,16 +25,21 @@ import {
 type Props = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  handleAddRoom: (data: RoomFormData) => Promise<void>;
 };
 
-export function AddRoomDialog({ isModalOpen, setIsModalOpen }: Props) {
+export function AddRoomDialog({
+  isModalOpen,
+  setIsModalOpen,
+  handleAddRoom,
+}: Props) {
   const handleClose = () => {
     setIsModalOpen(false);
   };
   const { roomForm, control, handleSubmit, reset } = useRoomForm();
 
-  const handleFormSubmit = (data: any) => {
-    console.log("Form Submitted", data);
+  const handleFormSubmit = async (data: RoomFormData) => {
+    await handleAddRoom(data);
     toast.success("Room added successfully!");
     reset();
     handleClose();
