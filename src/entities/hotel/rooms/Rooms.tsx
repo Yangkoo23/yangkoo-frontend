@@ -22,6 +22,7 @@ import {
 import { Pencil, Trash2 } from "lucide-react";
 import { useHotelRoomsStore } from "./store";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export const Rooms = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
@@ -76,10 +77,14 @@ export const Rooms = () => {
                 <TableCell>
                   <Button
                     variant="ghost"
-                    size="sm"
+                    size="lg"
                     onClick={() => console.log(room)}
+                    asChild
                   >
-                    <Pencil className="h-4 w-4" />
+                    <Link href={"/hotel/rooms/" + room.id}>
+                      <Pencil className="h-4 w-4" />
+                      Edit Details
+                    </Link>
                   </Button>
                   <Button
                     variant="ghost"
