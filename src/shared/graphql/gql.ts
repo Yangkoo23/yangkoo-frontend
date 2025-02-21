@@ -43,6 +43,7 @@ type Documents = {
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.CreateHotelRoomDocument,
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": typeof types.DeleteHotelRoomDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.UpdateHotelRoomDocument,
+    "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomsByHotelIdDocument,
 };
 const documents: Documents = {
@@ -75,6 +76,7 @@ const documents: Documents = {
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.CreateHotelRoomDocument,
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": types.DeleteHotelRoomDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.UpdateHotelRoomDocument,
+    "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomsByHotelIdDocument,
 };
 
@@ -208,6 +210,10 @@ export function graphql(source: "\n  mutation DeleteHotelRoom($id: ID!) {\n    d
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
