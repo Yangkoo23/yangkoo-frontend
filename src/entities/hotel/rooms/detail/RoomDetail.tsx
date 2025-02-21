@@ -24,6 +24,31 @@ export const RoomDetail = () => {
       room_type: roomType,
     });
   };
+
+  const onUpdateBedType = (bedType: string) => {
+    updateHotelRoom({
+      id: roomId,
+      bed_type: bedType,
+    });
+  };
+  const onUpdateCapacity = (capacity: string) => {
+    updateHotelRoom({
+      id: roomId,
+      capacity: Number(capacity),
+    });
+  };
+  const onUpdateSize = (size: string) => {
+    updateHotelRoom({
+      id: roomId,
+      size: Number(size),
+    });
+  };
+  const onUpdateQuantity = (quantity: string) => {
+    updateHotelRoom({
+      id: roomId,
+      quantity: Number(quantity),
+    });
+  };
   if (!orgLoaded || isLoading) {
     return <Loader />;
   }
@@ -48,6 +73,75 @@ export const RoomDetail = () => {
             type="text"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
+        </div>
+        <div className="flex flex-row gap-10">
+          <div>
+            <label
+              htmlFor="bedType"
+              className="text-lg font-medium text-gray-700"
+            >
+              Bed Type
+            </label>
+            <UpdateInput
+              id="bedType"
+              name="bedType"
+              value={room.bed_type}
+              onChange={onUpdateBedType}
+              placeholder="Enter Bed Type"
+              type="text"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="capacity"
+              className="text-lg font-medium text-gray-700"
+            >
+              Capacity
+            </label>
+            <UpdateInput
+              id="capacity"
+              name="capacity"
+              value={String(room.capacity)}
+              onChange={onUpdateCapacity}
+              placeholder="Capacity"
+              type="text"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+        </div>
+        <div className="flex flex-row gap-10">
+          <div>
+            <label htmlFor="size" className="text-lg font-medium text-gray-700">
+              Size
+            </label>
+            <UpdateInput
+              id="size"
+              name="size"
+              value={String(room.size)}
+              onChange={onUpdateSize}
+              placeholder="Enter Size"
+              type="text"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="quantity"
+              className="text-lg font-medium text-gray-700"
+            >
+              Quantity
+            </label>
+            <UpdateInput
+              id="quantity"
+              name="quantity"
+              value={String(room.quantity)}
+              onChange={onUpdateQuantity}
+              placeholder="Quantity"
+              type="text"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
         </div>
       </div>
     </div>
