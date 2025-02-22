@@ -8,3 +8,7 @@ export type HotelRoom = Omit<
   HotelRoomFragmentFragment,
   "__fragmentName" | "$fragmentRefs" | "__typename" | " $fragmentName"
 >;
+export type Images = {
+  id: string;
+  url: string;
+};

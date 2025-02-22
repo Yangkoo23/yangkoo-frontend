@@ -3,8 +3,15 @@ import React from "react";
 import { useOrganization } from "@clerk/nextjs";
 import { Loader } from "@/shared/ui/Loader";
 import UpdateInput from "@/shared/ui/UpdateInput";
-import { useHotelRoom, useUpdateHotelRoom } from "../hooks";
+import {
+  useHotelRoom,
+  useImagesByHotelRoomId,
+  useUpdateHotelRoom,
+} from "../hooks";
 import { useParams } from "next/navigation";
+import { useCreateFile, useDeleteFile } from "@/shared/hooks";
+import { HotelRoomImages } from "./HotelRoomImages";
+import { useHotelRoomImagesStore } from "../store";
 
 export const RoomDetail = () => {
   const params = useParams();
@@ -17,6 +24,10 @@ export const RoomDetail = () => {
   const orgId = organization?.id || "";
   const { room, isLoading } = useHotelRoom(roomId);
   const { updateHotelRoom } = useUpdateHotelRoom();
+  const { createFileAsync } = useCreateFile();
+  const { isLoading: isLoadingImages } = useImagesByHotelRoomId(roomId);
+  const { addHotelRoomImage, deleteHotelRoomImage } = useHotelRoomImagesStore();
+  const { deleteFile } = useDeleteFile();
 
   const onUpdateRoomType = (roomType: string) => {
     updateHotelRoom({
@@ -49,7 +60,31 @@ export const RoomDetail = () => {
       quantity: Number(quantity),
     });
   };
-  if (!orgLoaded || isLoading) {
+
+  const onUploadHotelRoomImage = async (
+    fileName: string,
+    fileType: string,
+    key: string,
+    url: string
+  ) => {
+    const file = await createFileAsync({
+      caption: fileName,
+      mimetype: fileType,
+      file_key: key,
+      file_type: fileType,
+      hotel_room_id: roomId,
+    });
+    addHotelRoomImage({
+      id: file.id,
+      url: url,
+    });
+  };
+
+  const onDeleteHotelRoomImage = (id: string) => {
+    deleteHotelRoomImage(id);
+    deleteFile(id);
+  };
+  if (!orgLoaded || isLoading || isLoadingImages) {
     return <Loader />;
   }
 
@@ -142,6 +177,13 @@ export const RoomDetail = () => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+        </div>
+        <div className="flex flex-col gap-10">
+          <HotelRoomImages
+            onUploadHotelRoomImage={onUploadHotelRoomImage}
+            hotelId={orgId}
+            onDeleteHotelImage={onDeleteHotelRoomImage}
+          />
         </div>
       </div>
     </div>

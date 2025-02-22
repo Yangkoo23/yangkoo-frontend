@@ -18,7 +18,6 @@ import {
   useCreateLocation,
   useUpdateHotel,
   useUpdateLocation,
-  useCreateHotelFile,
   useImagesByHotelId,
 } from "./hooks";
 import {
@@ -28,14 +27,14 @@ import {
   useDefaultRegionStore,
   useDefaultLocationStore,
   useDefaultCityStore,
+  useHotelImagesStore,
 } from "./store";
 import { Loader } from "@/shared/ui/Loader";
 import { LocationPickerMap, StarPicker } from "./ui";
 import UpdateTextArea from "@/shared/ui/UpdateTextArea";
 import { HotelImages } from "./ui/HotelImages";
-import { Button } from "@/components/ui/button";
-import { on } from "events";
-
+import { useCreateFile, useDeleteFile } from "@/shared/hooks";
+import { url } from "inspector";
 export const OverView = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
     memberships: true,
@@ -50,12 +49,14 @@ export const OverView = () => {
   const { createLocationAsync } = useCreateLocation();
   const { updateHotelAsync, updateHotel } = useUpdateHotel();
   const { updateLocation } = useUpdateLocation();
-  const { createHotelFile } = useCreateHotelFile();
+  const { createFileAsync } = useCreateFile();
   const { isLoading } = useImagesByHotelId(orgId);
   const { defaultCountry, setDefaultCountry } = useDefaultCountryStore();
   const { defaultRegion, setDefaultRegion } = useDefaultRegionStore();
   const { defaultLocation, setDefaultLocation } = useDefaultLocationStore();
   const { defaultCity, setDefaultCity } = useDefaultCityStore();
+  const { addHotelImage, deleteHotelImage } = useHotelImagesStore();
+  const { deleteFile } = useDeleteFile();
 
   const onSelectCountryChange = (countryId: string) => {
     setDefaultCountry(null);
@@ -119,19 +120,29 @@ export const OverView = () => {
       hotel_name: name,
     });
   };
-  const onUploadHotelImage = (
+  const onUploadHotelImage = async (
     fileName: string,
     hotel_id: string,
     fileType: string,
-    key: string
+    key: string,
+    url: string
   ) => {
-    createHotelFile({
+    const file = await createFileAsync({
       caption: fileName,
       mimetype: fileType,
       file_key: key,
       file_type: fileType,
       hotel_id: hotel_id,
     });
+    addHotelImage({
+      id: file.id,
+      url: url,
+    });
+  };
+
+  const onDeleteHotelImage = (id: string) => {
+    deleteHotelImage(id);
+    deleteFile(id);
   };
   if (!orgLoaded || isLoading) {
     return <Loader />;
@@ -195,6 +206,7 @@ export const OverView = () => {
           <HotelImages
             hotelId={orgId}
             onUploadHotelImage={onUploadHotelImage}
+            onDeleteHotelImage={onDeleteHotelImage}
           />
         </div>
         <div className="flex flex-col gap-2">

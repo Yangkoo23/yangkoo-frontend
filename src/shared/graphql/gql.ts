@@ -22,17 +22,15 @@ type Documents = {
     "\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n": typeof types.HotelAmenitiesDocument,
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": typeof types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": typeof types.CountryFragmentFragmentDoc,
-    "\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": typeof types.FileFragmentFragmentDoc,
     "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n": typeof types.HotelFragmentFragmentDoc,
     "\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n": typeof types.RegionFragmentFragmentDoc,
-    "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n": typeof types.CreateFileDocument,
     "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n": typeof types.CreateLocationDocument,
     "\n  mutation UpdateHotel($input: UpdateHotel!) {\n    updateHotel(input: $input) {\n      id\n    }\n  }\n": typeof types.UpdateHotelDocument,
     "\n  mutation UpdateLocation($input: UpdateLocation!) {\n    updateLocation(input: $input) {\n      id\n    }\n  }\n": typeof types.UpdateLocationDocument,
     "\n  query CitiesByRegionId($regionId: String!) {\n    citiesByRegionId(regionId: $regionId) {\n      ...CityFragment\n    }\n  }\n": typeof types.CitiesByRegionIdDocument,
     "\n  query Countries {\n    countries {\n      edges {\n        node {\n          ...CountryFragment\n        }\n      }\n    }\n  }\n": typeof types.CountriesDocument,
     "\n  query Hotel($id: ID!) {\n    hotel(id: $id) {\n      ...HotelFragment\n    }\n  }\n": typeof types.HotelDocument,
-    "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      Urls\n    }\n  }\n": typeof types.FilesByHotelIdDocument,
+    "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      id\n      url\n    }\n  }\n": typeof types.FilesByHotelIdDocument,
     "\n  query RegionsByCountryId($countryId: String!) {\n    regionsByCountryId(countryId: $countryId) {\n      ...RegionFragment\n    }\n  }\n": typeof types.RegionsByCountryIdDocument,
     "\n  fragment HotelPolicyFragment on HotelPolicy {\n    id\n    hotel_policy\n    policy_name\n    hotel_id\n  }\n": typeof types.HotelPolicyFragmentFragmentDoc,
     "\n  mutation CreateHotelPolicy($input: CreateHotelPolicy!) {\n    createHotelPolicy(input: $input) {\n      ...HotelPolicyFragment\n    }\n  }\n": typeof types.CreateHotelPolicyDocument,
@@ -45,6 +43,10 @@ type Documents = {
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.UpdateHotelRoomDocument,
     "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomsByHotelIdDocument,
+    "\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n": typeof types.FilesByHotelRoomIdDocument,
+    "\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": typeof types.FileFragmentFragmentDoc,
+    "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n": typeof types.CreateFileDocument,
+    "\n  mutation DeleteFile($id: ID!) {\n    deleteFile(id: $id)\n  }\n": typeof types.DeleteFileDocument,
 };
 const documents: Documents = {
     "\n  fragment AmenityFragment on Amenity {\n    id\n    amenity\n    icon\n    type\n  }\n": types.AmenityFragmentFragmentDoc,
@@ -55,17 +57,15 @@ const documents: Documents = {
     "\n  query HotelAmenities($hotelId: String!) {\n    hotelAmenitiesByHotelId(hotelId: $hotelId) {\n      ...HotelAmenityFragment\n    }\n  }\n": types.HotelAmenitiesDocument,
     "\n  fragment CityFragment on City {\n    id\n    city\n    city_description\n    region_id\n  }\n": types.CityFragmentFragmentDoc,
     "\n  fragment CountryFragment on Country {\n    id\n    country\n    country_description\n  }\n": types.CountryFragmentFragmentDoc,
-    "\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": types.FileFragmentFragmentDoc,
     "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n": types.HotelFragmentFragmentDoc,
     "\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n": types.RegionFragmentFragmentDoc,
-    "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n": types.CreateFileDocument,
     "\n  mutation CreateLocation($input: CreateLocation!) {\n    createLocation(input: $input) {\n      id\n      location_name\n      location_description\n      city_id\n    }\n  }\n": types.CreateLocationDocument,
     "\n  mutation UpdateHotel($input: UpdateHotel!) {\n    updateHotel(input: $input) {\n      id\n    }\n  }\n": types.UpdateHotelDocument,
     "\n  mutation UpdateLocation($input: UpdateLocation!) {\n    updateLocation(input: $input) {\n      id\n    }\n  }\n": types.UpdateLocationDocument,
     "\n  query CitiesByRegionId($regionId: String!) {\n    citiesByRegionId(regionId: $regionId) {\n      ...CityFragment\n    }\n  }\n": types.CitiesByRegionIdDocument,
     "\n  query Countries {\n    countries {\n      edges {\n        node {\n          ...CountryFragment\n        }\n      }\n    }\n  }\n": types.CountriesDocument,
     "\n  query Hotel($id: ID!) {\n    hotel(id: $id) {\n      ...HotelFragment\n    }\n  }\n": types.HotelDocument,
-    "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      Urls\n    }\n  }\n": types.FilesByHotelIdDocument,
+    "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      id\n      url\n    }\n  }\n": types.FilesByHotelIdDocument,
     "\n  query RegionsByCountryId($countryId: String!) {\n    regionsByCountryId(countryId: $countryId) {\n      ...RegionFragment\n    }\n  }\n": types.RegionsByCountryIdDocument,
     "\n  fragment HotelPolicyFragment on HotelPolicy {\n    id\n    hotel_policy\n    policy_name\n    hotel_id\n  }\n": types.HotelPolicyFragmentFragmentDoc,
     "\n  mutation CreateHotelPolicy($input: CreateHotelPolicy!) {\n    createHotelPolicy(input: $input) {\n      ...HotelPolicyFragment\n    }\n  }\n": types.CreateHotelPolicyDocument,
@@ -78,6 +78,10 @@ const documents: Documents = {
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.UpdateHotelRoomDocument,
     "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomsByHotelIdDocument,
+    "\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n": types.FilesByHotelRoomIdDocument,
+    "\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": types.FileFragmentFragmentDoc,
+    "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n": types.CreateFileDocument,
+    "\n  mutation DeleteFile($id: ID!) {\n    deleteFile(id: $id)\n  }\n": types.DeleteFileDocument,
 };
 
 /**
@@ -129,19 +133,11 @@ export function graphql(source: "\n  fragment CountryFragment on Country {\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n"): (typeof documents)["\n  fragment FileFragment on File {\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function graphql(source: "\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment HotelFragment on Hotel {\n    id\n    hotel_name\n    hotel_description\n    start_category\n    location_id\n    latitude\n    longitude\n    Location {\n      id\n      location_name\n      location_description\n      City {\n        ...CityFragment\n        Region {\n          ...RegionFragment\n          Country {\n            ...CountryFragment\n          }\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n"): (typeof documents)["\n  fragment RegionFragment on Region {\n    id\n    region\n    region_description\n    country_id\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -169,7 +165,7 @@ export function graphql(source: "\n  query Hotel($id: ID!) {\n    hotel(id: $id)
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      Urls\n    }\n  }\n"): (typeof documents)["\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      Urls\n    }\n  }\n"];
+export function graphql(source: "\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      id\n      url\n    }\n  }\n"): (typeof documents)["\n  query FilesByHotelId($hotelId: String!) {\n    filesByHotelId(hotelId: $hotelId) {\n      id\n      url\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -218,6 +214,22 @@ export function graphql(source: "\n  query HotelRoom($id: ID!) {\n    hotelRoom(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n"): (typeof documents)["\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n"): (typeof documents)["\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateFile($input: CreateFile!) {\n    createFile(input: $input) {\n      ...FileFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation DeleteFile($id: ID!) {\n    deleteFile(id: $id)\n  }\n"): (typeof documents)["\n  mutation DeleteFile($id: ID!) {\n    deleteFile(id: $id)\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

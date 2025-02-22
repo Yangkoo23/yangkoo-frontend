@@ -1,36 +1,37 @@
 import { useMutation } from "@tanstack/react-query";
-import { CreateFile, CreateFileMutation } from "@/shared/graphql/graphql";
-import { createHotelFileMutation } from "../../schema/mutations/createHotelFile";
+import {
+  CreateFile,
+  CreateFileMutation,
+  FileFragmentFragment,
+} from "@/shared/graphql/graphql";
+import { createFileMutation } from "@/shared/schema/mutations/createFile";
 import { useRequestAPI } from "@/shared/utils/request";
 
-export function useCreateHotelFile() {
+export function useCreateFile() {
   const requestAPI = useRequestAPI();
   const mutation = useMutation({
     mutationFn: async (input: CreateFile) => {
-      const res = await requestAPI<CreateFileMutation>(
-        createHotelFileMutation,
-        {
-          input,
-        }
-      );
+      const res = await requestAPI<CreateFileMutation>(createFileMutation, {
+        input,
+      });
 
       return res;
     },
   });
 
-  const createHotelFile = (input: CreateFile) => {
+  const createFile = (input: CreateFile) => {
     const response = mutation.mutate(input);
     return response;
   };
 
-  const createHotelFileAsync = async (input: CreateFile) => {
+  const createFileAsync = async (input: CreateFile) => {
     const response = await mutation.mutateAsync(input);
-    return response.createFile;
+    return response.createFile as FileFragmentFragment;
   };
 
   return {
-    createHotelFile,
-    createHotelFileAsync,
+    createFile,
+    createFileAsync,
     isLoading: mutation.isPending,
     isSuccess: mutation.isSuccess,
     isError: mutation.isError,

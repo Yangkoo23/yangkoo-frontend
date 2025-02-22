@@ -4,23 +4,22 @@ import { PhotoView } from "react-photo-view";
 import { Ghost, Trash2, Upload } from "lucide-react"; // Importing an icon
 import { useRef, useState } from "react";
 import { getPresignedUrl } from "@/shared/utils";
-import { useHotelImagesStore } from "../store";
+import { useHotelRoomImagesStore } from "../store";
 import { Button } from "@/components/ui/button";
 
 type Props = {
   hotelId: string;
-  onUploadHotelImage: (
+  onUploadHotelRoomImage: (
     fileName: string,
-    hotel_id: string,
     fileType: string,
     key: string,
     url: string
   ) => void;
   onDeleteHotelImage: (id: string) => void;
 };
-export function HotelImages({
+export function HotelRoomImages({
   hotelId,
-  onUploadHotelImage,
+  onUploadHotelRoomImage,
   onDeleteHotelImage,
 }: Props) {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -28,7 +27,7 @@ export function HotelImages({
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const { hotelImages, addHotelImage } = useHotelImagesStore();
+  const { hotelRoomImages } = useHotelRoomImagesStore();
   const MAX_FILE_SIZE_MB = 5;
 
   const handleFileChange = async (
@@ -70,9 +69,8 @@ export function HotelImages({
         xhr.onload = () => {
           if (xhr.status === 200) {
             const imageUrl = URL.createObjectURL(selectedFile);
-            onUploadHotelImage(
+            onUploadHotelRoomImage(
               sanitizedFileName,
-              hotelId,
               selectedFile.type,
               `${hotelId}/${sanitizedFileName}`,
               imageUrl
@@ -107,7 +105,7 @@ export function HotelImages({
 
       <div className="flex flex-col border border-gray-400 rounded-lg p-4">
         <div className="grid grid-cols-2 gap-4">
-          {hotelImages.map((urls, index) => (
+          {hotelRoomImages.map((urls, index) => (
             <div key={urls.id}>
               <PhotoView src={urls.url}>
                 <Image

@@ -3,6 +3,7 @@ import { useRequestAPI } from "@/shared/utils/request";
 import { imagesByHotelIdQuery } from "../../schema/queries/imagesByHotelId";
 import { FilesByHotelIdQuery } from "@/shared/graphql/graphql";
 import { useHotelImagesStore } from "../../store";
+import { Images } from "../../types/types";
 export function useImagesByHotelId(orgId: string) {
   const requestAPI = useRequestAPI();
   const { setHotelImages } = useHotelImagesStore();
@@ -18,12 +19,12 @@ export function useImagesByHotelId(orgId: string) {
           hotelId: orgId,
         }
       );
-      setHotelImages(response.filesByHotelId.Urls as string[]);
+      setHotelImages(response.filesByHotelId as Images[]);
       return response;
     },
   });
   return {
-    urls: data?.filesByHotelId.Urls as string[],
+    urls: data?.filesByHotelId as Images[],
     isLoading,
     error,
   };

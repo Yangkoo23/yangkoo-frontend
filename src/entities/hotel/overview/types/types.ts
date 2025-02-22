@@ -14,3 +14,7 @@ export type Location = Omit<
   "__typename" | "updated_at" | "deleted_at" | "created_at"
 >;
 export type File = NonNullable<FileFragmentFragment>;
+export type Images = {
+  id: string;
+  url: string;
+};
