@@ -66,6 +66,7 @@ export const Rooms = () => {
               <TableHead>Type</TableHead>
               <TableHead>Capacity</TableHead>
               <TableHead>Inclusions</TableHead>
+              <TableHead>Pricing</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -85,6 +86,19 @@ export const Rooms = () => {
                     <Link href={"/hotel/rooms/" + room.id + "/inclusions"}>
                       <Pencil className="h-4 w-4" />
                       Edit Inclusions
+                    </Link>
+                  </Button>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    onClick={() => console.log(room)}
+                    asChild
+                  >
+                    <Link href={"/hotel/rooms/" + room.id + "/pricing"}>
+                      <Pencil className="h-4 w-4" />
+                      Edit Pricing
                     </Link>
                   </Button>
                 </TableCell>

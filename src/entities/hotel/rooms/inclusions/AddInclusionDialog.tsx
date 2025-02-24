@@ -14,13 +14,13 @@ import { Textarea } from "@/components/ui/textarea";
 type Props = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-  handleAddPolicy: (policy_name: string, policy: string) => Promise<void>;
+  handleAddInclusion: (inclusion: string) => Promise<void>;
 };
 
-export function AddPolicyDialog({
+export function AddInclusionDialog({
   isModalOpen,
   setIsModalOpen,
-  handleAddPolicy,
+  handleAddInclusion,
 }: Props) {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -28,18 +28,16 @@ export function AddPolicyDialog({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const policyName = (e.target as HTMLFormElement).elements.namedItem(
-      "policyName"
+    const inclusion = (e.target as HTMLFormElement).elements.namedItem(
+      "inclusion"
     ) as HTMLInputElement;
-    const policy = (e.target as HTMLFormElement).elements.namedItem(
-      "policy"
-    ) as HTMLInputElement;
-    if (!policyName.value || !policy.value) {
-      toast.error("Please enter a policy name and policy");
+
+    if (!inclusion.value) {
+      toast.error("Please enter a inclusion");
       return;
     }
-    await handleAddPolicy(policyName.value, policy.value);
-    toast.success("Policy added successfully");
+    await handleAddInclusion(inclusion.value);
+    toast.success("Inclusion added successfully");
     handleClose();
   };
 
@@ -47,23 +45,19 @@ export function AddPolicyDialog({
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Policy</DialogTitle>
+          <DialogTitle>Add Inclusion</DialogTitle>
           <DialogDescription>Enter the policy</DialogDescription>
         </DialogHeader>
         <div>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col  gap-4 p-4">
               <div>
-                <label htmlFor="policyName">Policy Name</label>
-                <Input required name="policyName" id="policyName" />
-              </div>
-              <div>
-                <label htmlFor="policy">Policy</label>
-                <Textarea name="policy" id="policy" rows={4} required />
+                <label htmlFor="inclusion">Inclusion</label>
+                <Input required name="inclusion" id="inclusion" />
               </div>
             </div>
             <div className="flex justify-center mt-2">
-              <Button type="submit">Add Policy</Button>
+              <Button type="submit">Add Inclusion</Button>
             </div>
           </form>
         </div>
