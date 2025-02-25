@@ -53,6 +53,9 @@ type Documents = {
     "\n  mutation UpdateHotelRoomInclusion($input: UpdateHotelRoomInclusion!) {\n    updateHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": typeof types.UpdateHotelRoomInclusionDocument,
     "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomDocument,
     "\n  query HotelRoomInclusionsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomInclusionsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": typeof types.HotelRoomInclusionsByHotelRoomIdDocument,
+    "\n  query HotelRoomPriceByHotelRoomPriceSeasonId(\n    $hotelRoomPriceSeasonId: String!\n  ) {\n    hotelRoomPriceByHotelRoomPriceSeasonId(\n      hotelRoomPriceSeasonId: $hotelRoomPriceSeasonId\n    ) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": typeof types.HotelRoomPriceByHotelRoomPriceSeasonIdDocument,
+    "\n  query HotelRoomPriceSeasonsByHotelRoomPriceYearId(\n    $hotelRoomPriceYearId: String!\n  ) {\n    hotelRoomPriceSeasonsByHotelRoomPriceYearId(\n      hotelRoomPriceYearId: $hotelRoomPriceYearId\n    ) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n": typeof types.HotelRoomPriceSeasonsByHotelRoomPriceYearIdDocument,
+    "\n  query HotelRoomPriceYearsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomPriceYearsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n": typeof types.HotelRoomPriceYearsByHotelRoomIdDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.HotelRoomsByHotelIdDocument,
     "\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n": typeof types.FilesByHotelRoomIdDocument,
     "\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": typeof types.FileFragmentFragmentDoc,
@@ -99,6 +102,9 @@ const documents: Documents = {
     "\n  mutation UpdateHotelRoomInclusion($input: UpdateHotelRoomInclusion!) {\n    updateHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": types.UpdateHotelRoomInclusionDocument,
     "\n  query HotelRoom($id: ID!) {\n    hotelRoom(id: $id) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomDocument,
     "\n  query HotelRoomInclusionsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomInclusionsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": types.HotelRoomInclusionsByHotelRoomIdDocument,
+    "\n  query HotelRoomPriceByHotelRoomPriceSeasonId(\n    $hotelRoomPriceSeasonId: String!\n  ) {\n    hotelRoomPriceByHotelRoomPriceSeasonId(\n      hotelRoomPriceSeasonId: $hotelRoomPriceSeasonId\n    ) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": types.HotelRoomPriceByHotelRoomPriceSeasonIdDocument,
+    "\n  query HotelRoomPriceSeasonsByHotelRoomPriceYearId(\n    $hotelRoomPriceYearId: String!\n  ) {\n    hotelRoomPriceSeasonsByHotelRoomPriceYearId(\n      hotelRoomPriceYearId: $hotelRoomPriceYearId\n    ) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n": types.HotelRoomPriceSeasonsByHotelRoomPriceYearIdDocument,
+    "\n  query HotelRoomPriceYearsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomPriceYearsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n": types.HotelRoomPriceYearsByHotelRoomIdDocument,
     "\n  query HotelRoomsByHotelId($hotelId: String!) {\n    hotelRoomsByHotelId(hotelId: $hotelId) {\n      ...HotelRoomFragment\n    }\n  }\n": types.HotelRoomsByHotelIdDocument,
     "\n  query FilesByHotelRoomId($hotelRoomId: String!) {\n    filesByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      id\n      url\n    }\n  }\n": types.FilesByHotelRoomIdDocument,
     "\n  fragment FileFragment on File {\n    id\n    caption\n    mimetype\n    file_key\n    file_type\n  }\n": types.FileFragmentFragmentDoc,
@@ -276,6 +282,18 @@ export function graphql(source: "\n  query HotelRoom($id: ID!) {\n    hotelRoom(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query HotelRoomInclusionsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomInclusionsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomInclusionsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomInclusionsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelRoomPriceByHotelRoomPriceSeasonId(\n    $hotelRoomPriceSeasonId: String!\n  ) {\n    hotelRoomPriceByHotelRoomPriceSeasonId(\n      hotelRoomPriceSeasonId: $hotelRoomPriceSeasonId\n    ) {\n      ...HotelRoomPriceFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomPriceByHotelRoomPriceSeasonId(\n    $hotelRoomPriceSeasonId: String!\n  ) {\n    hotelRoomPriceByHotelRoomPriceSeasonId(\n      hotelRoomPriceSeasonId: $hotelRoomPriceSeasonId\n    ) {\n      ...HotelRoomPriceFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelRoomPriceSeasonsByHotelRoomPriceYearId(\n    $hotelRoomPriceYearId: String!\n  ) {\n    hotelRoomPriceSeasonsByHotelRoomPriceYearId(\n      hotelRoomPriceYearId: $hotelRoomPriceYearId\n    ) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomPriceSeasonsByHotelRoomPriceYearId(\n    $hotelRoomPriceYearId: String!\n  ) {\n    hotelRoomPriceSeasonsByHotelRoomPriceYearId(\n      hotelRoomPriceYearId: $hotelRoomPriceYearId\n    ) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query HotelRoomPriceYearsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomPriceYearsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n"): (typeof documents)["\n  query HotelRoomPriceYearsByHotelRoomId($hotelRoomId: String!) {\n    hotelRoomPriceYearsByHotelRoomId(hotelRoomId: $hotelRoomId) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

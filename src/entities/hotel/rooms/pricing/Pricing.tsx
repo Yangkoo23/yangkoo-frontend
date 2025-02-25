@@ -16,7 +16,9 @@ import {
   useCreateHotelRoomPrice,
   useCreateHotelRoomPriceSeason,
   useCreateHotelRoomPriceYear,
+  useHotelRoomPriceYearsByHotelRoomId,
 } from "../hooks";
+import { PricingSeason } from "./PricingSeason";
 
 export const Pricing = () => {
   const params = useParams();
@@ -29,6 +31,7 @@ export const Pricing = () => {
   const { createHotelRoomPriceYearAsync } = useCreateHotelRoomPriceYear();
   const { createHotelRoomPriceSeasonAsync } = useCreateHotelRoomPriceSeason();
   const { createHotelRoomPriceAsync } = useCreateHotelRoomPrice();
+  const { years } = useHotelRoomPriceYearsByHotelRoomId(roomId);
 
   const handleAddPricing = async (
     year: number,
@@ -60,25 +63,14 @@ export const Pricing = () => {
       <h1 className="text-3xl font-bold mb-8">Room Pricing</h1>
       <Button onClick={() => setIsModalOpen(true)}>Add Pricing</Button>
       <Accordion type="single" collapsible className="w-2/5">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
-          </AccordionContent>
-        </AccordionItem>
+        {years.map((year) => (
+          <AccordionItem key={year.id} value={`item-${year.id}`}>
+            <AccordionTrigger>{year.room_price_year}</AccordionTrigger>
+            <AccordionContent>
+              <PricingSeason hotelRoomPriceYearId={year.id} />
+            </AccordionContent>
+          </AccordionItem>
+        ))}
       </Accordion>
       <AddPricingDialog
         isModalOpen={isModalOpen}

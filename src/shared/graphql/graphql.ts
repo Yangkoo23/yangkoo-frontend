@@ -212,8 +212,8 @@ export type CreateHotelRoomPrice = {
 
 export type CreateHotelRoomPriceSeason = {
   hotel_room_price_year_id: Scalars['String']['input'];
-  season_end: Scalars['Date']['input'];
-  season_start: Scalars['Date']['input'];
+  season_end: Scalars['String']['input'];
+  season_start: Scalars['String']['input'];
 };
 
 export type CreateHotelRoomPriceYear = {
@@ -544,10 +544,11 @@ export type HotelRoomPriceSeason = {
   __typename?: 'HotelRoomPriceSeason';
   created_at: Scalars['DateTime']['output'];
   deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  hotelRoomPrice?: Maybe<Array<HotelRoomPrice>>;
   hotel_room_price_year_id: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  season_end: Scalars['Date']['output'];
-  season_start: Scalars['Date']['output'];
+  season_end: Scalars['String']['output'];
+  season_start: Scalars['String']['output'];
   updated_at?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -568,6 +569,7 @@ export type HotelRoomPriceYear = {
   __typename?: 'HotelRoomPriceYear';
   created_at: Scalars['DateTime']['output'];
   deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  hotelRoomPriceSeason?: Maybe<Array<HotelRoomPriceSeason>>;
   hotel_room_id: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   room_price_year: Scalars['Int']['output'];
@@ -969,10 +971,13 @@ export type Query = {
   hotelRoomInclusions: HotelRoomInclusionConnection;
   hotelRoomInclusionsByHotelRoomId: Array<Maybe<HotelRoomInclusion>>;
   hotelRoomPrice?: Maybe<HotelRoomPrice>;
+  hotelRoomPriceByHotelRoomPriceSeasonId?: Maybe<Array<Maybe<HotelRoomPrice>>>;
   hotelRoomPriceSeason?: Maybe<HotelRoomPriceSeason>;
   hotelRoomPriceSeasons: HotelRoomPriceSeasonConnection;
+  hotelRoomPriceSeasonsByHotelRoomPriceYearId?: Maybe<Array<Maybe<HotelRoomPriceSeason>>>;
   hotelRoomPriceYear?: Maybe<HotelRoomPriceYear>;
   hotelRoomPriceYears: HotelRoomPriceYearConnection;
+  hotelRoomPriceYearsByHotelRoomId?: Maybe<Array<Maybe<HotelRoomPriceYear>>>;
   hotelRoomPrices: HotelRoomPriceConnection;
   hotelRooms: HotelRoomConnection;
   hotelRoomsByHotelId?: Maybe<Array<Maybe<HotelRoom>>>;
@@ -1157,6 +1162,11 @@ export type QueryHotelRoomPriceArgs = {
 };
 
 
+export type QueryHotelRoomPriceByHotelRoomPriceSeasonIdArgs = {
+  hotelRoomPriceSeasonId: Scalars['String']['input'];
+};
+
+
 export type QueryHotelRoomPriceSeasonArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1168,6 +1178,11 @@ export type QueryHotelRoomPriceSeasonsArgs = {
 };
 
 
+export type QueryHotelRoomPriceSeasonsByHotelRoomPriceYearIdArgs = {
+  hotelRoomPriceYearId: Scalars['String']['input'];
+};
+
+
 export type QueryHotelRoomPriceYearArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1176,6 +1191,11 @@ export type QueryHotelRoomPriceYearArgs = {
 export type QueryHotelRoomPriceYearsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryHotelRoomPriceYearsByHotelRoomIdArgs = {
+  hotelRoomId: Scalars['String']['input'];
 };
 
 
@@ -1379,8 +1399,8 @@ export type UpdateHotelRoomPrice = {
 
 export type UpdateHotelRoomPriceSeason = {
   id: Scalars['ID']['input'];
-  season_end?: InputMaybe<Scalars['Date']['input']>;
-  season_start?: InputMaybe<Scalars['Date']['input']>;
+  season_end?: InputMaybe<Scalars['String']['input']>;
+  season_start?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdateHotelRoomPriceYear = {
@@ -1588,7 +1608,7 @@ export type HotelRoomInclusionFragmentFragment = { __typename?: 'HotelRoomInclus
 
 export type HotelRoomPriceFragmentFragment = { __typename?: 'HotelRoomPrice', id: string, price: number, hotel_room_price_season_id: string } & { ' $fragmentName'?: 'HotelRoomPriceFragmentFragment' };
 
-export type HotelRoomPriceSeasonFragmentFragment = { __typename?: 'HotelRoomPriceSeason', id: string, season_start: any, season_end: any, hotel_room_price_year_id: string } & { ' $fragmentName'?: 'HotelRoomPriceSeasonFragmentFragment' };
+export type HotelRoomPriceSeasonFragmentFragment = { __typename?: 'HotelRoomPriceSeason', id: string, season_start: string, season_end: string, hotel_room_price_year_id: string } & { ' $fragmentName'?: 'HotelRoomPriceSeasonFragmentFragment' };
 
 export type HotelRoomPriceYearFragmentFragment = { __typename?: 'HotelRoomPriceYear', id: string, room_price_year: number, hotel_room_id: string } & { ' $fragmentName'?: 'HotelRoomPriceYearFragmentFragment' };
 
@@ -1696,6 +1716,36 @@ export type HotelRoomInclusionsByHotelRoomIdQuery = { __typename?: 'Query', hote
     & { ' $fragmentRefs'?: { 'HotelRoomInclusionFragmentFragment': HotelRoomInclusionFragmentFragment } }
   ) | null> };
 
+export type HotelRoomPriceByHotelRoomPriceSeasonIdQueryVariables = Exact<{
+  hotelRoomPriceSeasonId: Scalars['String']['input'];
+}>;
+
+
+export type HotelRoomPriceByHotelRoomPriceSeasonIdQuery = { __typename?: 'Query', hotelRoomPriceByHotelRoomPriceSeasonId?: Array<(
+    { __typename?: 'HotelRoomPrice' }
+    & { ' $fragmentRefs'?: { 'HotelRoomPriceFragmentFragment': HotelRoomPriceFragmentFragment } }
+  ) | null> | null };
+
+export type HotelRoomPriceSeasonsByHotelRoomPriceYearIdQueryVariables = Exact<{
+  hotelRoomPriceYearId: Scalars['String']['input'];
+}>;
+
+
+export type HotelRoomPriceSeasonsByHotelRoomPriceYearIdQuery = { __typename?: 'Query', hotelRoomPriceSeasonsByHotelRoomPriceYearId?: Array<(
+    { __typename?: 'HotelRoomPriceSeason' }
+    & { ' $fragmentRefs'?: { 'HotelRoomPriceSeasonFragmentFragment': HotelRoomPriceSeasonFragmentFragment } }
+  ) | null> | null };
+
+export type HotelRoomPriceYearsByHotelRoomIdQueryVariables = Exact<{
+  hotelRoomId: Scalars['String']['input'];
+}>;
+
+
+export type HotelRoomPriceYearsByHotelRoomIdQuery = { __typename?: 'Query', hotelRoomPriceYearsByHotelRoomId?: Array<(
+    { __typename?: 'HotelRoomPriceYear' }
+    & { ' $fragmentRefs'?: { 'HotelRoomPriceYearFragmentFragment': HotelRoomPriceYearFragmentFragment } }
+  ) | null> | null };
+
 export type HotelRoomsByHotelIdQueryVariables = Exact<{
   hotelId: Scalars['String']['input'];
 }>;
@@ -1772,6 +1822,9 @@ export const UpdateHotelRoomDocument = {"kind":"Document","definitions":[{"kind"
 export const UpdateHotelRoomInclusionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateHotelRoomInclusion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateHotelRoomInclusion"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateHotelRoomInclusion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomInclusionFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomInclusionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoomInclusion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"inclusion"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_room_id"}}]}}]} as unknown as DocumentNode<UpdateHotelRoomInclusionMutation, UpdateHotelRoomInclusionMutationVariables>;
 export const HotelRoomDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoom"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoom"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoom"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"room_type"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"bed_type"}},{"kind":"Field","name":{"kind":"Name","value":"capacity"}},{"kind":"Field","name":{"kind":"Name","value":"price_type"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"discounted_price"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}}]}}]} as unknown as DocumentNode<HotelRoomQuery, HotelRoomQueryVariables>;
 export const HotelRoomInclusionsByHotelRoomIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoomInclusionsByHotelRoomId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoomInclusionsByHotelRoomId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelRoomId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomInclusionFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomInclusionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoomInclusion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"inclusion"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_room_id"}}]}}]} as unknown as DocumentNode<HotelRoomInclusionsByHotelRoomIdQuery, HotelRoomInclusionsByHotelRoomIdQueryVariables>;
+export const HotelRoomPriceByHotelRoomPriceSeasonIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoomPriceByHotelRoomPriceSeasonId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomPriceSeasonId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoomPriceByHotelRoomPriceSeasonId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelRoomPriceSeasonId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomPriceSeasonId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomPriceFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomPriceFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoomPrice"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_room_price_season_id"}}]}}]} as unknown as DocumentNode<HotelRoomPriceByHotelRoomPriceSeasonIdQuery, HotelRoomPriceByHotelRoomPriceSeasonIdQueryVariables>;
+export const HotelRoomPriceSeasonsByHotelRoomPriceYearIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoomPriceSeasonsByHotelRoomPriceYearId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomPriceYearId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoomPriceSeasonsByHotelRoomPriceYearId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelRoomPriceYearId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomPriceYearId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomPriceSeasonFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomPriceSeasonFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoomPriceSeason"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"season_start"}},{"kind":"Field","name":{"kind":"Name","value":"season_end"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_room_price_year_id"}}]}}]} as unknown as DocumentNode<HotelRoomPriceSeasonsByHotelRoomPriceYearIdQuery, HotelRoomPriceSeasonsByHotelRoomPriceYearIdQueryVariables>;
+export const HotelRoomPriceYearsByHotelRoomIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoomPriceYearsByHotelRoomId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoomPriceYearsByHotelRoomId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelRoomId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomPriceYearFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomPriceYearFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoomPriceYear"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"room_price_year"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_room_id"}}]}}]} as unknown as DocumentNode<HotelRoomPriceYearsByHotelRoomIdQuery, HotelRoomPriceYearsByHotelRoomIdQueryVariables>;
 export const HotelRoomsByHotelIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HotelRoomsByHotelId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hotelRoomsByHotelId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HotelRoomFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HotelRoomFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HotelRoom"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"room_type"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"bed_type"}},{"kind":"Field","name":{"kind":"Name","value":"capacity"}},{"kind":"Field","name":{"kind":"Name","value":"price_type"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"discounted_price"}},{"kind":"Field","name":{"kind":"Name","value":"hotel_id"}}]}}]} as unknown as DocumentNode<HotelRoomsByHotelIdQuery, HotelRoomsByHotelIdQueryVariables>;
 export const FilesByHotelRoomIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FilesByHotelRoomId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filesByHotelRoomId"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"hotelRoomId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hotelRoomId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<FilesByHotelRoomIdQuery, FilesByHotelRoomIdQueryVariables>;
 export const CreateFileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateFile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateFile"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createFile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"File"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"mimetype"}},{"kind":"Field","name":{"kind":"Name","value":"file_key"}},{"kind":"Field","name":{"kind":"Name","value":"file_type"}}]}}]} as unknown as DocumentNode<CreateFileMutation, CreateFileMutationVariables>;
