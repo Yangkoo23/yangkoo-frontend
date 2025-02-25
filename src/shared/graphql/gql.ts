@@ -39,8 +39,14 @@ type Documents = {
     "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n": typeof types.HotelPoliciesByHotelIdDocument,
     "\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n": typeof types.HotelRoomFragmentFragmentDoc,
     "\n  fragment HotelRoomInclusionFragment on HotelRoomInclusion {\n    id\n    inclusion\n    hotel_room_id\n  }\n": typeof types.HotelRoomInclusionFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n": typeof types.HotelRoomPriceFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n": typeof types.HotelRoomPriceSeasonFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n": typeof types.HotelRoomPriceYearFragmentFragmentDoc,
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.CreateHotelRoomDocument,
     "\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": typeof types.CreateHotelRoomInclusionDocument,
+    "\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": typeof types.CreateHotelRoomPriceDocument,
+    "\n  mutation CreateHotelRoomPriceSeason($input: CreateHotelRoomPriceSeason!) {\n    createHotelRoomPriceSeason(input: $input) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n": typeof types.CreateHotelRoomPriceSeasonDocument,
+    "\n  mutation CreateHotelRoomPriceYear($input: CreateHotelRoomPriceYear!) {\n    createHotelRoomPriceYear(input: $input) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n": typeof types.CreateHotelRoomPriceYearDocument,
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": typeof types.DeleteHotelRoomDocument,
     "\n  mutation DeleteHotelRoomInclusion($id: ID!) {\n    deleteHotelRoomInclusion(id: $id)\n  }\n": typeof types.DeleteHotelRoomInclusionDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.UpdateHotelRoomDocument,
@@ -79,8 +85,14 @@ const documents: Documents = {
     "\n  query HotelPoliciesByHotelId($hotelId: String!) {\n    hotelPoliciesByHotelId(hotelId: $hotelId) {\n      ...HotelPolicyFragment\n    }\n  }\n": types.HotelPoliciesByHotelIdDocument,
     "\n  fragment HotelRoomFragment on HotelRoom {\n    id\n    room_type\n    quantity\n    size\n    bed_type\n    capacity\n    price_type\n    price\n    discounted_price\n    hotel_id\n  }\n": types.HotelRoomFragmentFragmentDoc,
     "\n  fragment HotelRoomInclusionFragment on HotelRoomInclusion {\n    id\n    inclusion\n    hotel_room_id\n  }\n": types.HotelRoomInclusionFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n": types.HotelRoomPriceFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n": types.HotelRoomPriceSeasonFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n": types.HotelRoomPriceYearFragmentFragmentDoc,
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.CreateHotelRoomDocument,
     "\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": types.CreateHotelRoomInclusionDocument,
+    "\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": types.CreateHotelRoomPriceDocument,
+    "\n  mutation CreateHotelRoomPriceSeason($input: CreateHotelRoomPriceSeason!) {\n    createHotelRoomPriceSeason(input: $input) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n": types.CreateHotelRoomPriceSeasonDocument,
+    "\n  mutation CreateHotelRoomPriceYear($input: CreateHotelRoomPriceYear!) {\n    createHotelRoomPriceYear(input: $input) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n": types.CreateHotelRoomPriceYearDocument,
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": types.DeleteHotelRoomDocument,
     "\n  mutation DeleteHotelRoomInclusion($id: ID!) {\n    deleteHotelRoomInclusion(id: $id)\n  }\n": types.DeleteHotelRoomInclusionDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.UpdateHotelRoomDocument,
@@ -211,11 +223,35 @@ export function graphql(source: "\n  fragment HotelRoomInclusionFragment on Hote
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n"): (typeof documents)["\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n"): (typeof documents)["\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n"): (typeof documents)["\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateHotelRoomPriceSeason($input: CreateHotelRoomPriceSeason!) {\n    createHotelRoomPriceSeason(input: $input) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoomPriceSeason($input: CreateHotelRoomPriceSeason!) {\n    createHotelRoomPriceSeason(input: $input) {\n      ...HotelRoomPriceSeasonFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateHotelRoomPriceYear($input: CreateHotelRoomPriceYear!) {\n    createHotelRoomPriceYear(input: $input) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n"): (typeof documents)["\n  mutation CreateHotelRoomPriceYear($input: CreateHotelRoomPriceYear!) {\n    createHotelRoomPriceYear(input: $input) {\n      ...HotelRoomPriceYearFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
