@@ -41,7 +41,7 @@ type Documents = {
     "\n  fragment HotelRoomInclusionFragment on HotelRoomInclusion {\n    id\n    inclusion\n    hotel_room_id\n  }\n": typeof types.HotelRoomInclusionFragmentFragmentDoc,
     "\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n": typeof types.HotelRoomPriceFragmentFragmentDoc,
     "\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n": typeof types.HotelRoomPriceSeasonFragmentFragmentDoc,
-    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n": typeof types.HotelRoomPriceYearFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n    hotelRoomPriceSeason {\n      id\n    }\n  }\n": typeof types.HotelRoomPriceYearFragmentFragmentDoc,
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.CreateHotelRoomDocument,
     "\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": typeof types.CreateHotelRoomInclusionDocument,
     "\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": typeof types.CreateHotelRoomPriceDocument,
@@ -90,7 +90,7 @@ const documents: Documents = {
     "\n  fragment HotelRoomInclusionFragment on HotelRoomInclusion {\n    id\n    inclusion\n    hotel_room_id\n  }\n": types.HotelRoomInclusionFragmentFragmentDoc,
     "\n  fragment HotelRoomPriceFragment on HotelRoomPrice {\n    id\n    price\n    hotel_room_price_season_id\n  }\n": types.HotelRoomPriceFragmentFragmentDoc,
     "\n  fragment HotelRoomPriceSeasonFragment on HotelRoomPriceSeason {\n    id\n    season_start\n    season_end\n    hotel_room_price_year_id\n  }\n": types.HotelRoomPriceSeasonFragmentFragmentDoc,
-    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n": types.HotelRoomPriceYearFragmentFragmentDoc,
+    "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n    hotelRoomPriceSeason {\n      id\n    }\n  }\n": types.HotelRoomPriceYearFragmentFragmentDoc,
     "\n  mutation CreateHotelRoom($input: CreateHotelRoom!) {\n    createHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.CreateHotelRoomDocument,
     "\n  mutation CreateHotelRoomInclusion($input: CreateHotelRoomInclusion!) {\n    createHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": types.CreateHotelRoomInclusionDocument,
     "\n  mutation CreateHotelRoomPrice($input: CreateHotelRoomPrice!) {\n    createHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": types.CreateHotelRoomPriceDocument,
@@ -237,7 +237,7 @@ export function graphql(source: "\n  fragment HotelRoomPriceSeasonFragment on Ho
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n"): (typeof documents)["\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n  }\n"];
+export function graphql(source: "\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n    hotelRoomPriceSeason {\n      id\n    }\n  }\n"): (typeof documents)["\n  fragment HotelRoomPriceYearFragment on HotelRoomPriceYear {\n    id\n    room_price_year\n    hotel_room_id\n    hotelRoomPriceSeason {\n      id\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

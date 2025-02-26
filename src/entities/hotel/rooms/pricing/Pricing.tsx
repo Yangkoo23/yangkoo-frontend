@@ -19,6 +19,7 @@ import {
   useHotelRoomPriceYearsByHotelRoomId,
 } from "../hooks";
 import { PricingSeason } from "./PricingSeason";
+import { usePricingStore } from "../store";
 
 export const Pricing = () => {
   const params = useParams();
@@ -31,7 +32,8 @@ export const Pricing = () => {
   const { createHotelRoomPriceYearAsync } = useCreateHotelRoomPriceYear();
   const { createHotelRoomPriceSeasonAsync } = useCreateHotelRoomPriceSeason();
   const { createHotelRoomPriceAsync } = useCreateHotelRoomPrice();
-  const { years } = useHotelRoomPriceYearsByHotelRoomId(roomId);
+  const { isLoading } = useHotelRoomPriceYearsByHotelRoomId(roomId);
+  const { years } = usePricingStore();
 
   const handleAddPricing = async (
     year: number,
@@ -54,7 +56,7 @@ export const Pricing = () => {
     });
   };
 
-  if (!orgLoaded) {
+  if (!orgLoaded || isLoading) {
     return <Loader />;
   }
 

@@ -5,10 +5,12 @@ import {
 } from "@/shared/graphql/graphql";
 import { createHotelRoomPriceSeasonMutation } from "../../schema/mutations/createHotelRoomPriceSeason";
 import { useRequestAPI } from "@/shared/utils/request";
-import { HotelRoomPriceSeason } from "../../types";
+import { HotelRoomPriceSeason, Season } from "../../types";
+import { usePricingStore } from "../../store";
 
 export function useCreateHotelRoomPriceSeason() {
   const requestAPI = useRequestAPI();
+  const { addSeason } = usePricingStore();
   const mutation = useMutation({
     mutationFn: async (input: CreateHotelRoomPriceSeason) => {
       const res = await requestAPI<CreateHotelRoomPriceSeasonMutation>(
@@ -17,6 +19,8 @@ export function useCreateHotelRoomPriceSeason() {
           input,
         }
       );
+      const data = res.createHotelRoomPriceSeason as Season;
+      addSeason(input.hotel_room_price_year_id, data);
       return res;
     },
   });

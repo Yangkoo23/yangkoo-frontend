@@ -33,3 +33,18 @@ export type Images = {
   id: string;
   url: string;
 };
+
+export type Season = {
+  id: string;
+  season_start: string;
+  season_end: string;
+  hotel_room_price_year_id: string;
+  prices: HotelRoomPrice[];
+};
+
+export type Year = {
+  id: string;
+  room_price_year: number;
+  hotel_room_id: string;
+  seasons: Season[];
+};

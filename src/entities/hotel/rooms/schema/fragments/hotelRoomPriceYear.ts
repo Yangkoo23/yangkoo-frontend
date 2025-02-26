@@ -5,5 +5,8 @@ graphql(`
     id
     room_price_year
     hotel_room_id
+    hotelRoomPriceSeason {
+      id
+    }
   }
 `);
