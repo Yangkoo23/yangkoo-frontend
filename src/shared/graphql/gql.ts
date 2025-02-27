@@ -50,6 +50,7 @@ type Documents = {
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": typeof types.DeleteHotelRoomDocument,
     "\n  mutation DeleteHotelRoomInclusion($id: ID!) {\n    deleteHotelRoomInclusion(id: $id)\n  }\n": typeof types.DeleteHotelRoomInclusionDocument,
     "\n  mutation DeleteHotelRoomPriceSeason($id: ID!) {\n    deleteHotelRoomPriceSeason(id: $id)\n  }\n": typeof types.DeleteHotelRoomPriceSeasonDocument,
+    "\n  mutation DeleteHotelRoomPriceYear($id: ID!) {\n    deleteHotelRoomPriceYear(id: $id)\n  }\n": typeof types.DeleteHotelRoomPriceYearDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": typeof types.UpdateHotelRoomDocument,
     "\n  mutation UpdateHotelRoomInclusion($input: UpdateHotelRoomInclusion!) {\n    updateHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": typeof types.UpdateHotelRoomInclusionDocument,
     "\n  mutation UpdateHotelRoomPrice($input: UpdateHotelRoomPrice!) {\n    updateHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": typeof types.UpdateHotelRoomPriceDocument,
@@ -101,6 +102,7 @@ const documents: Documents = {
     "\n  mutation DeleteHotelRoom($id: ID!) {\n    deleteHotelRoom(id: $id)\n  }\n": types.DeleteHotelRoomDocument,
     "\n  mutation DeleteHotelRoomInclusion($id: ID!) {\n    deleteHotelRoomInclusion(id: $id)\n  }\n": types.DeleteHotelRoomInclusionDocument,
     "\n  mutation DeleteHotelRoomPriceSeason($id: ID!) {\n    deleteHotelRoomPriceSeason(id: $id)\n  }\n": types.DeleteHotelRoomPriceSeasonDocument,
+    "\n  mutation DeleteHotelRoomPriceYear($id: ID!) {\n    deleteHotelRoomPriceYear(id: $id)\n  }\n": types.DeleteHotelRoomPriceYearDocument,
     "\n  mutation UpdateHotelRoom($input: UpdateHotelRoom!) {\n    updateHotelRoom(input: $input) {\n      ...HotelRoomFragment\n    }\n  }\n": types.UpdateHotelRoomDocument,
     "\n  mutation UpdateHotelRoomInclusion($input: UpdateHotelRoomInclusion!) {\n    updateHotelRoomInclusion(input: $input) {\n      ...HotelRoomInclusionFragment\n    }\n  }\n": types.UpdateHotelRoomInclusionDocument,
     "\n  mutation UpdateHotelRoomPrice($input: UpdateHotelRoomPrice!) {\n    updateHotelRoomPrice(input: $input) {\n      ...HotelRoomPriceFragment\n    }\n  }\n": types.UpdateHotelRoomPriceDocument,
@@ -274,6 +276,10 @@ export function graphql(source: "\n  mutation DeleteHotelRoomInclusion($id: ID!)
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation DeleteHotelRoomPriceSeason($id: ID!) {\n    deleteHotelRoomPriceSeason(id: $id)\n  }\n"): (typeof documents)["\n  mutation DeleteHotelRoomPriceSeason($id: ID!) {\n    deleteHotelRoomPriceSeason(id: $id)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation DeleteHotelRoomPriceYear($id: ID!) {\n    deleteHotelRoomPriceYear(id: $id)\n  }\n"): (typeof documents)["\n  mutation DeleteHotelRoomPriceYear($id: ID!) {\n    deleteHotelRoomPriceYear(id: $id)\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

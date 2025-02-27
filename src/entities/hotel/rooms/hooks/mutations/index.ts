@@ -10,3 +10,4 @@ export * from "./useCreateHotelRoomPriceYear";
 export * from "./useUpdateHotelRoomPrice";
 export * from "./useDeleteHotelRoomPriceSeason";
 export * from "./useDeleteHotelRoomPriceSeason";
+export * from "./useDeleteHotelRoomPriceYear";

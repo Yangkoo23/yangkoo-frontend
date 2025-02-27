@@ -17,9 +17,11 @@ import {
   useCreateHotelRoomPriceSeason,
   useCreateHotelRoomPriceYear,
   useHotelRoomPriceYearsByHotelRoomId,
+  useDeleteHotelRoomPriceYear,
 } from "../hooks";
 import { PricingSeason } from "./PricingSeason";
 import { usePricingStore } from "../store";
+import { Trash2 } from "lucide-react";
 
 export const Pricing = () => {
   const params = useParams();
@@ -33,6 +35,7 @@ export const Pricing = () => {
   const { createHotelRoomPriceSeasonAsync } = useCreateHotelRoomPriceSeason();
   const { createHotelRoomPriceAsync } = useCreateHotelRoomPrice();
   const { isLoading } = useHotelRoomPriceYearsByHotelRoomId(roomId);
+  const { deleteHotelRoomPriceYear } = useDeleteHotelRoomPriceYear();
   const { years } = usePricingStore();
 
   const handleAddPricing = async (
@@ -56,6 +59,9 @@ export const Pricing = () => {
     });
   };
 
+  const onDeleteYear = (id: string) => {
+    deleteHotelRoomPriceYear(id);
+  };
   if (!orgLoaded || isLoading) {
     return <Loader />;
   }
@@ -64,10 +70,15 @@ export const Pricing = () => {
     <div className="flex flex-col items-center justify-center container mx-auto py-10 shadow-lg border border-gray-300 rounded-xl min-h-screen w-[100vw] md:w-[80vw]">
       <h1 className="text-3xl font-bold mb-8">Room Pricing</h1>
       <Button onClick={() => setIsModalOpen(true)}>Add Pricing</Button>
-      <Accordion type="single" collapsible className="w-2/5">
+      <Accordion type="single" collapsible className="w-full p-4 md:w-2/5">
         {years.map((year) => (
           <AccordionItem key={year.id} value={`item-${year.id}`}>
-            <AccordionTrigger>{year.room_price_year}</AccordionTrigger>
+            <AccordionTrigger>
+              <div className="flex flex-row justify-between w-full">
+                {year.room_price_year}
+                <Trash2 onClick={() => onDeleteYear(year.id)} color="red" />
+              </div>
+            </AccordionTrigger>
             <AccordionContent>
               <PricingSeason hotelRoomPriceYearId={year.id} />
             </AccordionContent>

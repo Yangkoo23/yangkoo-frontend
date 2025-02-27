@@ -27,15 +27,20 @@ export const Price = ({ hotelRoomPriceSeasonId }: Props) => {
   return (
     <Suspense fallback={<Loader />}>
       {price.map((price) => (
-        <UpdateInput
-          onChange={updatePrice}
-          key={price.id}
-          value={String(price.price)}
-          name="price"
-          placeholder="Price"
-          type="number"
-          className=""
-        />
+        <React.Fragment key={price.id}>
+          <div className="flex flex-row gap-2">
+            ${" "}
+            <UpdateInput
+              onChange={updatePrice}
+              value={String(price.price)}
+              name="price"
+              placeholder="Price"
+              type="number"
+              className="w-1/2"
+            />
+            USD
+          </div>
+        </React.Fragment>
       ))}
     </Suspense>
   );

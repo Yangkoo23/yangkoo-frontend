@@ -83,7 +83,7 @@ export function AddPricingSeasonDialog({
               setDateRange={setDateRange}
               resetDateRange={resetDateRange}
             />
-          </div>
+          </div> 
           <div>
             <label htmlFor="price" className="text-sm font-medium">
               Price (per night) $
