@@ -16,8 +16,6 @@ import { useHotelRoomImagesStore } from "../store";
 export const RoomDetail = () => {
   const params = useParams();
   const roomId = String(params?.roomId); // Ensure the key matches the dynamic segment in your route
-
-  console.log("Room ID:", roomId);
   const { organization, isLoaded: orgLoaded } = useOrganization({
     memberships: true,
   });

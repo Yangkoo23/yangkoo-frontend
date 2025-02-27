@@ -7,3 +7,6 @@ export * from "./useDeleteHotelRoomInclusion";
 export * from "./useCreateHotelRoomPrice";
 export * from "./useCreateHotelRoomPriceSeason";
 export * from "./useCreateHotelRoomPriceYear";
+export * from "./useUpdateHotelRoomPrice";
+export * from "./useDeleteHotelRoomPriceSeason";
+export * from "./useDeleteHotelRoomPriceSeason";

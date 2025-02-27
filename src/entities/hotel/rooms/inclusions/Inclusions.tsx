@@ -9,6 +9,7 @@ import { AddInclusionDialog } from "./AddInclusionDialog";
 import {
   useCreateHotelRoomInclusion,
   useDeleteHotelRoomInclusion,
+  useHotelRoomInclusionsByHotelRoomId,
 } from "../hooks";
 import { useHotelRoomInclusionsStore } from "../store";
 import { Trash2, CircleHelp } from "lucide-react";
@@ -23,6 +24,7 @@ export const Inclusions = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { createHotelRoomInclusionAsync } = useCreateHotelRoomInclusion();
   const { deleteHotelRoomInclusion } = useDeleteHotelRoomInclusion();
+  const { isLoading } = useHotelRoomInclusionsByHotelRoomId(roomId);
   const {
     deleteHotelRoomInclusion: deleteHotelRoomInclusionState,
     hotelRoomInclusions,
@@ -38,7 +40,7 @@ export const Inclusions = () => {
     deleteHotelRoomInclusionState(id);
     deleteHotelRoomInclusion(id);
   };
-  if (!orgLoaded) {
+  if (!orgLoaded || isLoading) {
     return <Loader />;
   }
 

@@ -8,6 +8,7 @@ interface PricingState {
   addSeason: (yearId: string, season: Season) => void;
   setSeasons: (yearId: string, seasons: Season[]) => void;
   addPrice: (seasonId: string, price: HotelRoomPrice) => void;
+  deleteSeason: (yearId: string, seasonId: string) => void;
 }
 
 export const usePricingStore = create<PricingState>((set) => ({
@@ -32,5 +33,14 @@ export const usePricingStore = create<PricingState>((set) => ({
           s.id === seasonId ? { ...s, prices: [...s.prices, price] } : s
         ),
       })),
+    })),
+
+  deleteSeason: (yearId, seasonId) =>
+    set((state) => ({
+      years: state.years.map((y) =>
+        y.id === yearId
+          ? { ...y, seasons: y.seasons.filter((s) => s.id !== seasonId) }
+          : y
+      ),
     })),
 }));
