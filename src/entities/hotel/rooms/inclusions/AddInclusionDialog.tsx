@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   isModalOpen: boolean;

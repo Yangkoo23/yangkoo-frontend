@@ -34,7 +34,6 @@ import { LocationPickerMap, StarPicker } from "./ui";
 import UpdateTextArea from "@/shared/ui/UpdateTextArea";
 import { HotelImages } from "./ui/HotelImages";
 import { useCreateFile, useDeleteFile } from "@/shared/hooks";
-import { url } from "inspector";
 export const OverView = () => {
   const { organization, isLoaded: orgLoaded } = useOrganization({
     memberships: true,

@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "d181lxzl3rji6p.cloudfront.net",
       },
+      {
+        protocol: "https",
+        hostname: "flowbite.s3.amazonaws.com",
+      },
     ],
   },
   /* config options here */

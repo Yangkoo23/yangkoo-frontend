@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useOrganization } from "@clerk/nextjs";
 import { Loader } from "@/shared/ui/Loader";
 import { Icon, IconType } from "@/shared/ui/Icons";

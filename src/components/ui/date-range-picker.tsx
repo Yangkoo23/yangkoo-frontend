@@ -77,7 +77,7 @@ export function DateRangePicker({
             numberOfMonths={2}
             formatters={{
               // Add this formatter to remove the year
-              formatCaption: (date, options) => format(date, "MMMM"),
+              formatCaption: (date) => format(date, "MMMM"),
             }}
           />
           <div className="flex justify-center p-4">

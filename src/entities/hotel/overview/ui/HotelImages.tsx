@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { PhotoView } from "react-photo-view";
-import { Ghost, Trash2, Upload } from "lucide-react"; // Importing an icon
+import { Trash2, Upload } from "lucide-react"; // Importing an icon
 import { useRef, useState } from "react";
 import { getPresignedUrl } from "@/shared/utils";
 import { useHotelImagesStore } from "../store";
@@ -28,7 +28,7 @@ export function HotelImages({
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const { hotelImages, addHotelImage } = useHotelImagesStore();
+  const { hotelImages } = useHotelImagesStore();
   const MAX_FILE_SIZE_MB = 5;
 
   const handleFileChange = async (
