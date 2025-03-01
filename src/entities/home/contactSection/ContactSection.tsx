@@ -15,18 +15,18 @@ export const ContactSection = () => {
               <p className="text-white">--Lorem ipsum dolor sit</p>
             </div>
             <div>
-              <p className="text-white text-3xl font-bold">
+              <p className="text-white text-3xl font-bold text-center">
                 Lorem ipsum dolor sit amet consectuer amet lorem
               </p>
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <p className="text-white text-sm text-center ">
                 lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet
                 consecteurlorem ipsum dolor sit amet consecteurlorem ipsum dolor
                 sit amet consecteur
               </p>
             </div>
-            <div className="w-1/3">
+            <div className="md:w-1/3 lg:w-1/2 xl:w-1/3">
               <Button className="rounded-full w-full h-12" size={"lg"}>
                 Contact us Now
               </Button>
