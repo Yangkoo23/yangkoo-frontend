@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowUpRight, Flame, Hotel } from "lucide-react";
+import { ArrowUpRight, Flame } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
