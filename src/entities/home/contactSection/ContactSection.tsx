@@ -7,7 +7,7 @@ import React from "react";
 
 export const ContactSection = () => {
   return (
-    <div className="p-4 max-w-8xl mt-7 bg-blue-700 rounded-3xl">
+    <div className="p-4 max-w-8xl mt-7 bg-blue-700">
       <div className="flex flex-col justify-center p-10 ">
         <div className="flex flex-col items-center justify-center mb-4">
           <div className="flex flex-col items-center justify-center mb-4 gap-4">

@@ -1,3 +1,4 @@
+import { Footer } from "@/widgets/footer/Footer";
 import { NavigationBar } from "@/widgets/navigation";
 
 export default function HomeLayout({
@@ -6,9 +7,10 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="p-5">
+    <main>
       <NavigationBar />
       {children}
+      <Footer />
     </main>
   );
 }
