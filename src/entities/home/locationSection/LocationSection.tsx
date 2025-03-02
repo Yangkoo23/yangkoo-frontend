@@ -73,7 +73,7 @@ export const LocationSection = () => {
                   </p>
                   <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                     <Link
-                      href="#"
+                      href="/home/destinations"
                       className="mt-2 inline-flex items-center text-primary"
                     >
                       <ArrowUpRight className="w-5 h-5" />
