@@ -1,4 +1,3 @@
-import { DestinationGrid } from "@/components/destination-grid";
 import { Button } from "@/components/ui/button";
 import { destinations } from "@/shared/const";
 import { Calendar, MapPin } from "lucide-react";

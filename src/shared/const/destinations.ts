@@ -19,6 +19,7 @@ export const destinations = [
     hotel_tip:
       "Luxury stays like Taj Tashi offer valley views; boutique guesthouses cluster in Norzin Lam.",
     image: "/destinations/thimphu.webp",
+    homeImage: "/home/destinations/homeThimphu.webp",
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ export const destinations = [
       "Ancient Ruin of Drukgyel Dzong (tentative list)",
     ],
     image: "/destinations/paro.webp",
+    homeImage: "/home/destinations/homeParo.webp",
   },
   {
     id: 3,
