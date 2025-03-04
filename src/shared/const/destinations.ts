@@ -14,12 +14,24 @@ export const destinations = [
     ],
     best_time_to_visit:
       "March-May (spring blossoms), September-November (clear skies for festivals)",
-    festivals:
-      "Thimphu Tshechu (September), Dochula Druk Wangyel Festival (December)",
-    hotel_tip:
-      "Luxury stays like Taj Tashi offer valley views; boutique guesthouses cluster in Norzin Lam.",
     image: "/destinations/thimphu.webp",
-    homeImage: "/home/destinations/homeThimphu.webp",
+    tagline: "Where Tradition Meets Modernity in the Heart of the Himalayas",
+    bestTime: "March to May and October to November",
+    climate: "Temperate with four distinct seasons",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "3-5 days recommended",
+    travelTips: [
+      "Acclimatize to the altitude (2,300m)",
+      "Dress modestly for dzong visits",
+      "Try butter tea at a local café",
+    ],
+    photos: [
+      {
+        url: "/photos/thimphu-dzong.jpg",
+        caption: "Tashichho Dzong illuminated at dusk",
+      },
+    ],
   },
   {
     id: 2,
@@ -35,13 +47,23 @@ export const destinations = [
     ],
     best_time_to_visit:
       "March-April (spring blooms + Paro Tshechu), October (clear trekking weather)",
-    trekking: "Druk Path Trek (4-6 days to Thimphu)",
-    unesco_sites: [
-      "Tiger’s Nest (tentative list)",
-      "Ancient Ruin of Drukgyel Dzong (tentative list)",
-    ],
     image: "/destinations/paro.webp",
-    homeImage: "/home/destinations/homeParo.webp",
+    tagline: "Gateway to the Sacred Tiger's Nest Monastery",
+    bestTime: "March to April and October to November",
+    climate: "Temperate with cool winters",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "2-3 days",
+    travelTips: [
+      "Start the Tiger’s Nest hike early",
+      "Visit Rinpung Dzong during prayer hours",
+    ],
+    photos: [
+      {
+        url: "/photos/paro-tigers-nest.jpg",
+        caption: "Tiger’s Nest Monastery perched on cliffs",
+      },
+    ],
   },
   {
     id: 3,
@@ -57,10 +79,23 @@ export const destinations = [
     ],
     best_time_to_visit:
       "March (mustard flower blooms), October-February (mild winters)",
-    festivals:
-      "Punakha Tshechu (February) + Punakha Drubchen (re-enactment of 17th-century battles)",
-    unesco_sites: ["Punakha Dzong (tentative list)"],
     image: "/destinations/punakha.webp",
+    tagline: "The Ancient Capital of Spiritual Serenity and Riverside Beauty",
+    bestTime: "March and October to February",
+    climate: "Subtropical with warm summers",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "2-3 days",
+    travelTips: [
+      "Cross the suspension bridge at sunrise",
+      "Taste chili cheese stew (ema datshi)",
+    ],
+    photos: [
+      {
+        url: "/photos/punakha-dzong.jpg",
+        caption: "Punakha Dzong amidst blooming jacaranda trees",
+      },
+    ],
   },
   {
     id: 4,
@@ -77,8 +112,23 @@ export const destinations = [
     ],
     best_time_to_visit:
       "April-June (temperate weather), September-November (festivals + golden landscapes)",
-    festivals: "Jakar Tshechu (October), Ura Yakchoe (May)",
     image: "/destinations/bumthang.webp",
+    tagline: "Bhutan's Spiritual Heartland of Ancient Temples and Valleys",
+    bestTime: "April to June and September to November",
+    climate: "Cool temperate with cold winters",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "3-4 days",
+    travelTips: [
+      "Attend a local weaving demonstration",
+      "Try buckwheat pancakes (khuli)",
+    ],
+    photos: [
+      {
+        url: "/photos/bumthang-kurjey.jpg",
+        caption: "Kurjey Lhakhang surrounded by mountains",
+      },
+    ],
   },
   {
     id: 5,
@@ -92,9 +142,23 @@ export const destinations = [
       "Kuenga Rabten Palace",
     ],
     best_time_to_visit: "October-April (dry season for clear views)",
-    historical_significance:
-      "Birthplace of Bhutan’s monarchy; ancestral home of the royal family",
     image: "/destinations/trongsa.webp",
+    tagline: "The Strategic Fortress at the Crossroads of Bhutan",
+    bestTime: "October to April",
+    climate: "Cool with moderate rainfall",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "1-2 days",
+    travelTips: [
+      "Stop at Chendebji Chorten en route",
+      "Explore Ta Dzong’s royal artifacts",
+    ],
+    photos: [
+      {
+        url: "/photos/trongsa-dzong.jpg",
+        caption: "Trongsa Dzong overlooking the valley",
+      },
+    ],
   },
   {
     id: 6,
@@ -109,8 +173,23 @@ export const destinations = [
     ],
     best_time_to_visit:
       "May-October (wildflowers in summer, golden larches in fall)",
-    trekking: "Sagala Trek (3 days), Haa-Paro Cultural Trail",
     image: "/destinations/haa.webp",
+    tagline: "Bhutan's Hidden Alpine Gem Near the Tibetan Border",
+    bestTime: "May to October",
+    climate: "Alpine with cold winters",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "2 days",
+    travelTips: [
+      "Attend the Haa Summer Festival",
+      "Drive through Chele La Pass for sunrise views",
+    ],
+    photos: [
+      {
+        url: "/photos/haa-valley.jpg",
+        caption: "Haa Valley with traditional houses",
+      },
+    ],
   },
   {
     id: 9,
@@ -125,7 +204,22 @@ export const destinations = [
       "Bardo Waterfall",
     ],
     best_time_to_visit: "October-April (dry season for festivals + treks)",
-    festivals: "Trashigang Tshechu (November), Gom Kora Festival (March)",
+    tagline: "Eastern Jewel of Silk Weaving and Nomadic Culture",
+    bestTime: "October to April",
+    climate: "Subtropical with hot summers",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "3-4 days",
+    travelTips: [
+      "Visit Radhi Village for silk weaving",
+      "Trek to Merak-Sakteng for unique culture",
+    ],
+    photos: [
+      {
+        url: "/photos/trashigang-dzong.jpg",
+        caption: "Trashigang Dzong above the river",
+      },
+    ],
   },
   {
     id: 10,
@@ -141,6 +235,21 @@ export const destinations = [
     ],
     best_time_to_visit:
       "March-May (spring), October-December (festivals + clear skies)",
-    specialty: "Bamboo crafts, stone carvings, *ezay* (chili paste)",
+    tagline: "Land of Craftsmanship and the Enchanting Phobjikha Valley",
+    bestTime: "March to May and October to December",
+    climate: "Varied from subtropical to alpine",
+    language: "Dzongkha, English and Nepali",
+    currency: "Bhutanese ngultrum (BTN)",
+    timeToVisit: "2-3 days",
+    travelTips: [
+      "Hike the Gangtey Nature Trail",
+      "Experience village life in Phobjikha",
+    ],
+    photos: [
+      {
+        url: "/photos/wangdue-dzong.jpg",
+        caption: "Wangdue Phodrang Dzong reconstruction",
+      },
+    ],
   },
 ];
