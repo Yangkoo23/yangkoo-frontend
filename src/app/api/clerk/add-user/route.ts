@@ -1,9 +1,9 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { WebhookEvent, OrganizationJSON, UserJSON } from "@clerk/nextjs/server";
+import { WebhookEvent, UserJSON } from "@clerk/nextjs/server";
 
 const NEXT_PUBLIC_APP_BACKEND_URI =
-  process.env.NEXT_PUBLIC_APP_BACKEND_URI || "http://localhost:8080";
+  process.env.NEXT_PUBLIC_APP_BACKEND_URI || "http://localhost:9000";
 export async function POST(req: Request) {
   const SIGNING_SECRET = process.env.ADD_USER_SIGNING_SECRET;
 
