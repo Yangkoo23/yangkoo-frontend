@@ -29,7 +29,7 @@ export const LocationPickerMap = ({ onLocationSelect, lat, lng }: Props) => {
     <div className="h-[400px] w-full">
       <GoogleMap
         zoom={15}
-        center={selectedLocation || { lat: 40.7128, lng: -74.006 }} // Default to NYC
+        center={selectedLocation || { lat: 27.4716, lng: 89.6386 }} // Default to NYC
         onClick={handleMapClick}
         mapContainerClassName="w-full h-full rounded-lg"
       >

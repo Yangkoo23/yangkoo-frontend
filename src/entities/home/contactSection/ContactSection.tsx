@@ -12,18 +12,18 @@ export const ContactSection = () => {
         <div className="flex flex-col items-center justify-center mb-4">
           <div className="flex flex-col items-center justify-center mb-4 gap-4">
             <div>
-              <p className="text-white">--Lorem ipsum dolor sit</p>
+              <p className="text-white">-- Need Assistance?</p>
             </div>
             <div>
               <p className="text-white text-3xl font-bold text-center">
-                Lorem ipsum dolor sit amet consectuer amet lorem
+                We're Here to Help with Your Bhutan Travel Plans
               </p>
             </div>
             <div className="md:w-1/2">
               <p className="text-white text-sm text-center ">
-                lorem ipsum dolor sit amet consecteur lorem ipsum dolor sit amet
-                consecteurlorem ipsum dolor sit amet consecteurlorem ipsum dolor
-                sit amet consecteur
+                Have questions about your booking? Need help choosing the
+                perfect destination in Bhutan? Our team is ready to assist you
+                with personalized recommendations, and seamless booking support.
               </p>
             </div>
             <div className="md:w-1/3 lg:w-1/2 xl:w-1/3">

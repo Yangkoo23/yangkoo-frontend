@@ -52,8 +52,11 @@ export const LocationSection = () => {
   return (
     <div className="p-4 max-w-8xl mt-7">
       <div>
-        <div className="flex flex-col items-center justify-center mb-4">
-          <h3 className="text-4xl md:text-6xl font-bold">Trending Locations</h3>
+        <div className="flex flex-col items-center justify-center mb-8">
+          <p>-- Discover the Land of the Thunder Dragon </p>
+          <p className="text-4xl md:text-5xl font-bold">
+            Destinations in Bhutan
+          </p>
         </div>
         <div className="flex justify-center">
           <div className="columns-2 gap-4 space-y-4 md:columns-3 sm:columns-1">
@@ -72,7 +75,7 @@ export const LocationSection = () => {
                   <Flame className="text-red-500" />
                 </div>
                 <p className="text-white text-sm">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Nestled in a lush valley at 2,300 meters,
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link
@@ -99,7 +102,10 @@ export const LocationSection = () => {
                   <h3 className="text-white text-lg font-semibold">Trongsa</h3>
                   <Flame className="text-red-500" />
                 </div>
-                <p className="text-white text-sm">Lorem ipsum dolor</p>
+                <p className="text-white text-sm">
+                  Perched on a knife-edge ridge, Trongsa Dzong -- Bhutan's
+                  largest fortress
+                </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-6 h-6 md:w-12 md:h-12 flex justify-center">
                   <Link
                     href="/home/destinations"
@@ -126,7 +132,8 @@ export const LocationSection = () => {
                   <Flame className="text-red-500" />
                 </div>
                 <p className="text-white text-sm">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Paro Valley, cradled by emerald rice paddies and snow-capped
+                  peaks,
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link
@@ -156,7 +163,8 @@ export const LocationSection = () => {
                   <Flame className="text-red-500" />
                 </div>
                 <p className="text-white text-sm">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Wangdue Phodrang's dramatic landscapes range from subtropical
+                  lowlands
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link
@@ -184,7 +192,7 @@ export const LocationSection = () => {
                   <Flame className="text-red-500" />
                 </div>
                 <p className="text-white text-sm">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Punakha, Bhutan's former winter capital,
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link
@@ -212,7 +220,8 @@ export const LocationSection = () => {
                   <Flame className="text-red-500" />
                 </div>
                 <p className="text-white text-sm">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Bhutan's best-kept secret, the Haa Valley, remained closed to
+                  tourists until 2002.
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link
