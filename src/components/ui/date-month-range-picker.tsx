@@ -21,7 +21,7 @@ type Props = {
   setDateRange: (dateRange: [string, string]) => void;
   resetDateRange: () => void;
 };
-export function DateRangePicker({
+export function DateMonthRangePicker({
   id,
   isDisabled,
   setDateRange,

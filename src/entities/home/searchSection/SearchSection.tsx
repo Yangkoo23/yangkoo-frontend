@@ -1,6 +1,7 @@
+import { DatePickerWithRange } from "@/components/date-range-picker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Hotel } from "lucide-react";
+import { Car, Hotel, Soup } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -10,7 +11,7 @@ export const SearchSection = () => {
       <div
         className="relative h-[70vh] bg-cover bg-center flex flex-col items-center justify-center text-white rounded-3xl mt-7"
         style={{
-          backgroundImage: "url('/home/hero_image.webp')", // Replace with your hero image path
+          backgroundImage: "url('/home/moutain-hero.webp')", // Replace with your hero image path
         }}
       >
         <div className="text-center space-y-4 ">
@@ -24,11 +25,23 @@ export const SearchSection = () => {
 
         {/* Booking Interface */}
         <div className="p-1 backdrop-blur-xl bg-white/20 shadow-lg rounded-t-lg  max-w-5xl mx-auto space-y-4 md:mt-32">
-          <div className="flex flex-wrap flex-col justify-between items-center space-y-4 md:space-y-0">
-            <div>
+          <div className="flex  flex-row  justify-between md:gap-4 items-center gap-2 md:space-y-0">
+            <div className="border border-gray-300 rounded-md">
               <Button variant={"ghost"}>
                 <Hotel />
                 Hotels
+              </Button>
+            </div>
+            <div className="border border-gray-300 rounded-md">
+              <Button variant={"ghost"} disabled size={"sm"}>
+                <Car />
+                Transport
+              </Button>
+            </div>
+            <div className="border border-gray-300 rounded-md">
+              <Button variant={"ghost"} disabled size={"sm"}>
+                <Soup />
+                Resturants
               </Button>
             </div>
           </div>
@@ -37,25 +50,18 @@ export const SearchSection = () => {
           <div className="flex flex-wrap flex-col  justify-between items-center space-y-4 md:space-y-0">
             <div>
               <Input
-                className="bg-white rounded-full w-[300px] md:w-[930px] h-12 text-black"
+                className="bg-white rounded-full w-[300px] md:w-[930px]  h-12 text-black"
                 placeholder="Destination"
               />
             </div>
             <div className="flex flex-col md:flex-row gap-4 ">
               <div className="flex flex-row mt-4 gap-4">
-                <Input
-                  className="bg-white rounded-full w-[150px] md:w-[300px] h-12 text-black"
-                  placeholder="Check-in"
-                />
-                <Input
-                  className="bg-white rounded-full w-[150px] md:w-[300px] h-12 text-black "
-                  placeholder="Check-out"
-                />
+                <DatePickerWithRange className=" w-[150px] md:w-[300px] h-12 text-black" />
               </div>
               <div className="mt-4 items-center">
                 <Input
                   className="bg-white rounded-full w-[300px] md:w-[300px] h-12 text-black  "
-                  placeholder="Guests"
+                  placeholder="Number of People"
                 />
               </div>
             </div>

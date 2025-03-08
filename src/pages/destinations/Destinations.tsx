@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { destinations } from "@/shared/const";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
