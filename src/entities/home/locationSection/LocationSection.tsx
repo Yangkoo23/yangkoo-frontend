@@ -117,39 +117,10 @@ export const LocationSection = () => {
               </div>
             </div>
 
-            {/* Paro*/}
+            {/* Wangdue*/}
             <div className={`relative overflow-hidden rounded-xl `}>
               <Image
-                src={"/home/destinations/homeParo.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Paro</h3>
-                  <Flame className="text-red-500" />
-                </div>
-                <p className="text-white text-sm">
-                  Paro Valley, cradled by emerald rice paddies and snow-capped
-                  peaks,
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Wangdue*/}
-            <div className={`relative overflow-hidden rounded-xl md:h-[810px]`}>
-              <Image
-                src={"/home/destinations/homeWangdue.webp"}
+                src={"/home/destinations/homeWangdue.avif"}
                 alt=""
                 className="mb-4 w-full rounded-3xl"
                 width={500}
@@ -165,6 +136,35 @@ export const LocationSection = () => {
                 <p className="text-white text-sm">
                   Wangdue Phodrang's dramatic landscapes range from subtropical
                   lowlands
+                </p>
+                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
+                  <Link
+                    href="/home/destinations"
+                    className="mt-2 inline-flex items-center text-primary"
+                  >
+                    <ArrowUpRight className="w-5 h-5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Paro*/}
+            <div className={`relative overflow-hidden rounded-xl md:h-[880px]`}>
+              <Image
+                src={"/home/destinations/homeParo.avif"}
+                alt=""
+                className="mb-4 w-full rounded-3xl"
+                width={500}
+                height={500}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white text-lg font-semibold">Paro</h3>
+                  <Flame className="text-red-500" />
+                </div>
+                <p className="text-white text-sm">
+                  Paro Valley, cradled by emerald rice paddies and snow-capped
+                  peaks,
                 </p>
                 <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
                   <Link

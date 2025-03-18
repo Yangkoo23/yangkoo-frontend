@@ -28,8 +28,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/thimphu-dzong.jpg",
-        caption: "Tashichho Dzong illuminated at dusk",
+        url: "/thimphu/2022-10-01 11.35.59.webp",
+        caption: "Dochula Pass",
+      },
+      {
+        url: "/thimphu/LLL02901.webp",
+        caption: "Mask Dance",
+      },
+      {
+        url: "/thimphu/People gathered to watch masked dances and get blessings at the annual Thimphu festival.webp",
+        caption: "Tashichho Dzong  ",
       },
     ],
   },
