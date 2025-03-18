@@ -62,176 +62,164 @@ export const LocationSection = () => {
           <div className="columns-2 gap-4 space-y-4 md:columns-3 sm:columns-1">
             {/* Thimphu*/}
             <div className={`relative overflow-hidden rounded-xl`}>
-              <Image
-                src={"/home/destinations/homeThimphu.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Thimphu</h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/home/destinations/homeThimphu.avif"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">
+                      Thimphu
+                    </h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Nestled in a lush valley at 2,300 meters,
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Nestled in a lush valley at 2,300 meters,
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
 
             {/* Trongsa*/}
             <div className={`relative overflow-hidden rounded-xl `}>
-              <Image
-                src={"/destinations/trongsa.webp"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Trongsa</h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/destinations/trongsa.webp"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">
+                      Trongsa
+                    </h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Perched on a knife-edge ridge, Trongsa Dzong -- Bhutan's
+                    largest fortress
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-6 h-6 md:w-12 md:h-12 flex justify-center items-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Perched on a knife-edge ridge, Trongsa Dzong -- Bhutan's
-                  largest fortress
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-6 h-6 md:w-12 md:h-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
 
             {/* Wangdue*/}
             <div className={`relative overflow-hidden rounded-xl `}>
-              <Image
-                src={"/home/destinations/homeWangdue.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">
-                    Wangdue Phodrang
-                  </h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/home/destinations/homeWangdue.avif"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">
+                      Wangdue Phodrang
+                    </h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Wangdue Phodrang's dramatic landscapes range from
+                    subtropical lowlands
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center items-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Wangdue Phodrang's dramatic landscapes range from subtropical
-                  lowlands
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
 
             {/* Paro*/}
             <div className={`relative overflow-hidden rounded-xl md:h-[880px]`}>
-              <Image
-                src={"/home/destinations/homeParo.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Paro</h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/home/destinations/homeParo.avif"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">Paro</h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Paro Valley, cradled by emerald rice paddies and snow-capped
+                    peaks,
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center items-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Paro Valley, cradled by emerald rice paddies and snow-capped
-                  peaks,
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
 
             {/* Punakha*/}
             <div className={`relative overflow-hidden rounded-xl md:h-[830px]`}>
-              <Image
-                src={"/home/destinations/homePunakha.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Punakha</h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/home/destinations/homePunakha.avif"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">
+                      Punakha
+                    </h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Punakha, Bhutan's former winter capital,
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center items-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Punakha, Bhutan's former winter capital,
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
 
             {/* Haa*/}
             <div className={`relative overflow-hidden rounded-xl `}>
-              <Image
-                src={"/home/destinations/homeHaa.avif"}
-                alt=""
-                className="mb-4 w-full rounded-3xl"
-                width={500}
-                height={500}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold">Haa</h3>
-                  <Flame className="text-red-500" />
+              <Link href="/home/destinations">
+                <Image
+                  src={"/home/destinations/homeHaa.avif"}
+                  alt=""
+                  className="mb-4 w-full rounded-3xl"
+                  width={500}
+                  height={500}
+                />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white text-lg font-semibold">Haa</h3>
+                    <Flame className="text-red-500" />
+                  </div>
+                  <p className="text-white text-sm">
+                    Bhutan's best-kept secret, the Haa Valley, remained closed
+                    to tourists until 2002.
+                  </p>
+                  <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center items-center">
+                    <ArrowUpRight className="w-5 h-5 text-primary" />
+                  </div>
                 </div>
-                <p className="text-white text-sm">
-                  Bhutan's best-kept secret, the Haa Valley, remained closed to
-                  tourists until 2002.
-                </p>
-                <div className="bg-white rounded-full p-2 mb-2 w-12 flex justify-center">
-                  <Link
-                    href="/home/destinations"
-                    className="mt-2 inline-flex items-center text-primary"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
