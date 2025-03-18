@@ -68,8 +68,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/paro-tigers-nest.jpg",
-        caption: "Tiger’s Nest Monastery perched on cliffs",
+        url: "/destinations/paro/museum2.webp",
+        caption: "National Museum ",
+      },
+      {
+        url: "/destinations/paro/jomolhari2.webp",
+        caption: "Jomolhari Mountain ",
+      },
+      {
+        url: "/destinations/paro/takchog3.webp",
+        caption: "Paro Bridge ",
       },
     ],
   },
@@ -100,8 +108,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/punakha-dzong.jpg",
-        caption: "Punakha Dzong amidst blooming jacaranda trees",
+        url: "/destinations/punakha/rafting3.webp",
+        caption: "Punakha Rafting",
+      },
+      {
+        url: "/destinations/punakha/khamsumyull3.webp",
+        caption: "Khamsum Yulley Namgyel Chhorten",
+      },
+      {
+        url: "/destinations/punakha/khamsumyull5.webp",
+        caption: "Khamsum Yulley Namgyel Scenic View",
       },
     ],
   },
@@ -211,6 +227,7 @@ export const destinations = [
       "Merak-Sakteng Valley",
       "Bardo Waterfall",
     ],
+    image: "/destinations/trashigang.avif",
     best_time_to_visit: "October-April (dry season for festivals + treks)",
     tagline: "Eastern Jewel of Silk Weaving and Nomadic Culture",
     bestTime: "October to April",
@@ -224,8 +241,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/trashigang-dzong.jpg",
-        caption: "Trashigang Dzong above the river",
+        url: "/destinations/trashigang/meraksheep.avif",
+        caption: "Trashigang Sheep",
+      },
+      {
+        url: "/destinations/trashigang/Festivalteaser.avif",
+        caption: "Trashigang Festival",
+      },
+      {
+        url: "/destinations/trashigang/TrashigangAttractionsTeaser.avif",
+        caption: "Trashigang Village",
       },
     ],
   },
@@ -245,6 +270,7 @@ export const destinations = [
       "March-May (spring), October-December (festivals + clear skies)",
     tagline: "Land of Craftsmanship and the Enchanting Phobjikha Valley",
     bestTime: "March to May and October to December",
+    image: "/destinations/wangde.webp",
     climate: "Varied from subtropical to alpine",
     language: "Dzongkha, English and Nepali",
     currency: "Bhutanese ngultrum (BTN)",
@@ -255,8 +281,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/wangdue-dzong.jpg",
-        caption: "Wangdue Phodrang Dzong reconstruction",
+        url: "/destinations/wangde/gangtey1.webp",
+        caption: "Gangtey Monastery",
+      },
+      {
+        url: "/destinations/wangde/phobjikha5.webp",
+        caption: "Phobjikha Valley",
+      },
+      {
+        url: "/destinations/wangde/Wangdue Dzong.webp",
+        caption: "Wangdue Dzong",
       },
     ],
   },
