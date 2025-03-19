@@ -38,12 +38,6 @@ export const SearchSection = () => {
                 Transport
               </Button>
             </div>
-            <div className="border border-gray-300 rounded-md">
-              <Button variant={"ghost"} disabled size={"sm"}>
-                <Soup />
-                Resturants
-              </Button>
-            </div>
           </div>
         </div>
         <div className="p-6 backdrop-blur-xl bg-white/20 shadow-lg rounded-2xl   max-w-5xl mx-auto space-y-4 ">

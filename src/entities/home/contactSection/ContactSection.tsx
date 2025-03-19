@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
 
 export const ContactSection = () => {
@@ -23,8 +24,8 @@ export const ContactSection = () => {
               </p>
             </div>
             <div className="md:w-1/3 lg:w-1/2 xl:w-1/3">
-              <Button className="rounded-full w-full h-12" size={"lg"}>
-                Contact us Now
+              <Button className="rounded-full w-full h-12" size={"lg"} asChild>
+                <Link href={"/home/contact"}>Contact us Now</Link>
               </Button>
             </div>
           </div>
