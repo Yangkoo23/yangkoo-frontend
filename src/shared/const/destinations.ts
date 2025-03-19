@@ -149,8 +149,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/bumthang-kurjey.jpg",
-        caption: "Kurjey Lhakhang surrounded by mountains",
+        url: "/destinations/bumthang/Ura1.avif",
+        caption: "Ura Village",
+      },
+      {
+        url: "/destinations/bumthang/MarcusWestbergBumthang.avif",
+        caption: "Bumthang",
+      },
+      {
+        url: "/destinations/bumthang/Bumthang180723byAmpSripimanwat.avif",
+        caption: "Jakar Dzong",
       },
     ],
   },
@@ -179,8 +187,16 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/trongsa-dzong.jpg",
-        caption: "Trongsa Dzong overlooking the valley",
+        url: "/destinations/trongsa/taadzong4.webp",
+        caption: "Taa Dzong",
+      },
+      {
+        url: "/destinations/trongsa/chendebji3.webp",
+        caption: "Chendebji Chhorten",
+      },
+      {
+        url: "/destinations/trongsa/trongsadzong1.webp",
+        caption: "Trongsa Dzong",
       },
     ],
   },
@@ -210,7 +226,15 @@ export const destinations = [
     ],
     photos: [
       {
-        url: "/photos/haa-valley.jpg",
+        url: "/destinations/haa/Haa Attractions 2 teaser.webp",
+        caption: "Haa Valley with traditional houses",
+      },
+      {
+        url: "/destinations/haa/04-ChelelaPass.avif",
+        caption: "Chelela Pass",
+      },
+      {
+        url: "/destinations/haa/Haa Attractions Header.webp",
         caption: "Haa Valley with traditional houses",
       },
     ],
