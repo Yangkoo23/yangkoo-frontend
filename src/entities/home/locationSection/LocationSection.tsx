@@ -144,7 +144,9 @@ export const LocationSection = () => {
             </div>
 
             {/* Paro*/}
-            <div className={`relative overflow-hidden rounded-xl md:h-[880px]`}>
+            <div
+              className={`relative overflow-hidden rounded-xl md:h-[380px] lg:h-[880px]`}
+            >
               <Link href="/home/destinations">
                 <Image
                   src={"/home/destinations/homeParo.avif"}
@@ -170,7 +172,9 @@ export const LocationSection = () => {
             </div>
 
             {/* Punakha*/}
-            <div className={`relative overflow-hidden rounded-xl md:h-[830px]`}>
+            <div
+              className={`relative overflow-hidden rounded-xl md:h-[380px] lg:h-[830px]`}
+            >
               <Link href="/home/destinations">
                 <Image
                   src={"/home/destinations/homePunakha.avif"}

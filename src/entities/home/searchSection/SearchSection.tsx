@@ -44,7 +44,7 @@ export const SearchSection = () => {
           <div className="flex flex-wrap flex-col  justify-between items-center space-y-4 md:space-y-0">
             <div>
               <Input
-                className="bg-white rounded-full w-[300px] md:w-[930px]  h-12 text-black"
+                className="bg-white rounded-full w-[300px] md:w-[600px] lg:w-[930px]  h-12 text-black"
                 placeholder="Destination"
               />
             </div>
@@ -65,7 +65,7 @@ export const SearchSection = () => {
                 className="mt-4 w-72 h-12 md:w-96 rounded-full"
                 asChild
               >
-                <Link href="/hotels">Search</Link>
+                <Link href="/home/early-access">Search</Link>
               </Button>
             </div>
           </div>
