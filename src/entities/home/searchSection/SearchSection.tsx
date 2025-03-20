@@ -65,7 +65,7 @@ export const SearchSection = () => {
                 className="mt-4 w-72 h-12 md:w-96 rounded-full"
                 asChild
               >
-                <Link href="/home/early-access">Search</Link>
+                <Link href="/home/early-access">Early Access</Link>
               </Button>
             </div>
           </div>

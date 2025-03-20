@@ -81,7 +81,7 @@ export default function EarlyAccessForm() {
           disabled={isSubmitting}
           className="w-full bg-primary hover:bg-primary/80 text-white font-medium py-3 px-4 rounded-md transition-colors"
         >
-          {isSubmitting ? "Submitting..." : "Get Early Access"}
+          {isSubmitting ? "Submitting..." : "Apply for Early Access"}
         </Button>
       </form>
       <p className="mt-3 text-sm text-gray-500">
