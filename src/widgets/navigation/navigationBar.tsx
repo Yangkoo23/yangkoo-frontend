@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/nextjs";
+import { useState } from "react";
 
 export function NavigationBar() {
   const { orgId } = useAuth();
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="pt-6 pl-6 pr-6 relative">
@@ -74,7 +76,7 @@ export function NavigationBar() {
 
         {/* Mobile Menu using Sheet */}
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <svg
@@ -99,13 +101,18 @@ export function NavigationBar() {
                 <SheetDescription></SheetDescription>
               </SheetHeader>
               <SignedOut>
-                <Button asChild className="w-full text-white rounded-full">
+                <Button
+                  asChild
+                  className="w-full text-white rounded-full"
+                  onClick={() => setOpen(false)}
+                >
                   <Link href="/home/sign-up">Register</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="w-full text-[hsl(var(--secondary))] border-[hsl(var(--secondary))] rounded-full"
+                  onClick={() => setOpen(false)}
                 >
                   <Link href="/home/sign-in">Sign In</Link>
                 </Button>
@@ -117,6 +124,7 @@ export function NavigationBar() {
                     asChild
                     variant="outline"
                     className="w-full text-[hsl(var(--secondary))] border-[hsl(var(--secondary))] rounded-full"
+                    onClick={() => setOpen(false)}
                   >
                     <Link href="/hotel">Dashboard</Link>
                   </Button>
@@ -125,6 +133,7 @@ export function NavigationBar() {
                     asChild
                     variant="outline"
                     className="w-full text-[hsl(var(--secondary))] border-[hsl(var(--secondary))] rounded-full"
+                    onClick={() => setOpen(false)}
                   >
                     <Link href="/choose-entities">List your property</Link>
                   </Button>
@@ -134,12 +143,18 @@ export function NavigationBar() {
                 </div>
               </SignedIn>
 
-              <Link
-                href="/home/contact"
-                className="flex items-center justify-center w-full p-2 hover:text-blue-600"
+              <Button
+                asChild
+                className="w-full rounded-full"
+                onClick={() => setOpen(false)}
               >
-                Contact Us
-              </Link>
+                <Link
+                  href="/home/contact"
+                  className="flex items-center justify-center w-full p-2 "
+                >
+                  Contact Us
+                </Link>
+              </Button>
             </SheetContent>
           </Sheet>
         </div>
